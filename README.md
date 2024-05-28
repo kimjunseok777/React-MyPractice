@@ -1,2 +1,2 @@
-# React-MyPractice
-React-MyPractice
+
+리액트 개인 연습 폴더
