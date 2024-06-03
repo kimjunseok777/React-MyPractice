@@ -31,7 +31,7 @@ npm uninstall -g create-react-app
 
         hooks  -->  상태 관련된 재사용되는 리액트 함수들이 들어간다
 
-        pages  -->  웹 내 체이지
+        pages  -->  웹 내 페이지
             main
                 hooks -->  해당 페이지에서만 사용되는 리액트 함수
                 components  -->  해당 페이지에서만 사용되는 컴포넌트
@@ -99,13 +99,13 @@ react-router-dom (라이브러리)
 
     사용법 :
         npx로 만든 폴더로 경로 지정해준 후에  -->  npm i react-router-dom  (웹사이트에 가이드문서에서 사용법을 보는 것이 좋다)
-        - npm install react-router-dom
+        ==>  npm install react-router-dom
 
         구글에 react-router-dom 검색 후, Tutorial 확인
 
         ==> 잘 설치가 됐다면, package.json 파일에 "react-router-dom" 이 있는 것을 확인할 수 있다 (없으면 설치되지 않은 것이다)
 
-==>  src 폴더 안에 새 폴더로 libs --> routes 폴더 --> router.js 파일 생성
+==> src 폴더 안에 새 폴더로 libs --> routes 폴더 --> router.js 파일 생성
 ==> 라이브러리 공식 문서로 가서 사용버을 확인해보자 (Tutorial)
 
 --------------------------------------------------------------------------------------------------------------------
