@@ -112,7 +112,7 @@ _components 폴더 안에 "sign-in-form.jsx" , "sign-up-form.jsx" 파일 생성 
 
 ** 경로 이동 : main.jsx 에서 배열로 중복되는 컴포넌트를 map 으로 순회해서 모두 만들어 줬다면 경로 이동해주자
 
-                        main.jsx  -->  sign-in , sign-up 스타일 컴포넌트 만들어주자 (Form , InputBox , Input , InputLabel)
+                        main.jsx  -->  sign-in-form.jsx 스타일 컴포넌트 만들어주자 (Form , InputBox , Input , InputLabel)
 
 
                         ------------------------------------------------------------------------------------------------------
@@ -197,7 +197,7 @@ _components 폴더 안에 "sign-in-form.jsx" , "sign-up-form.jsx" 파일 생성 
             ex)
             function a(A, B, C, D, ...) {
             }
-            --> 여기서 필요한 매개변수는 A, B 만 있고, 나머지 매개변수들은 하나로 뭉치고 싶다면? 나머지 매개변수를 사용하면 된다
+            --> 여기서 필요한 매개변수는 A, B 만 있고, 나머지 매개변수들은 하나로 뭉치고 싶다면?  -->  나머지 매개변수를 사용하면 된다
             ex)
             function a(A, B, ...rest) {  -->  이렇게 "닷닷닷 rest" 적어주면 된다  -->  "rest" 는 이름 내가 마음대로 정하면 된다, 이것도 뭉쳐놓은 "매개변수" 이다
                 console.log(rest)  //  {C, D, E, F, ...}  -->  이렇게 A, B 를 제외한 나머지가 오게 된다
