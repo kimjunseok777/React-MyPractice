@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <form class="form">
+        <input type="text" class="email-input" name="email">
+        <!--이렇게 input 에 name 이라는 속성을 줄 수 있다-->
+        <input type="text">
+        <button type="button">주소 찾기</button>
+        <!--주소찾기 버튼은 눌렀을 때 "제출" 되면 안되니까 type 을 button 으로 바꿔주면 된다-->
+
+        <input type="text">
+        <button>회원가입</button>
+        <!--여기서 회원가입 버튼 눌렀을 때, form 안에 있는 input 데이터가 전부 다 필요하다면 어떻게 해야할까?-->
+
+        <button type="reset">리셋</button>
+        <!--이렇게 form 안에 있는 input 값들을 초기화 하고 싶다면 버튼 타입을 reset 으로 해주면 된다-->
+    </form>
+</body>
+</html>
+
+<!--name 만 지정해주면, 일일히 가져오지 않고, input 의 값들을 가지고 올 수 있는 것이다-->
+
+<!--
+    ** 가장 중요한 결론 :
+
+        form 은 이벤트가 제출이 되면, 안에 있는 input 에 name 값으로 value 를 가지고 올 수 있다는 것이다  ***
+        form 을 사용하는 이유는 "편의성" 때문이다  ***
+        
+        -> DOM API 에 접근할 필요가 없어진다
+-->
+
+<!--
+    버튼 대표적 타입 : submit(기본) , button , reset
+-->
