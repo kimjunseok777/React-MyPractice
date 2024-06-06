@@ -86,7 +86,7 @@ _components 폴더 안에 "sign-in-form.jsx" , "sign-up-form.jsx" 파일 생성 
                     SIGN-IN
                 </S.Tab>
                 ) 이 속성 값이 내가 만든 Tab 스타일 컴포넌트로 전달된다
-                ) isSelected={true / false}  -->  이 속성값을 전달한다
+                ) isSelected={true / false}  -->  이 속성값을 전달한다  -->  isSelected 값이 true 이면 회색 하이라이트가 들어간다
 
                 ) 이렇게 스타일 컴포넌트로 생성된 요소에 속성을 만들 수 있다  -->  이렇게 속성을 부여한 것을 전달해서 css 를 바꿔줄 수 있다 ***
                 ) isSelected 가 true 이냐 false 이냐에 따라 달라진다
@@ -196,6 +196,7 @@ _components 폴더 안에 "sign-in-form.jsx" , "sign-up-form.jsx" 파일 생성 
 
     3. 나머지 매개변수 연산자
             --> 함수에는 매개변수로 정말 여러개가 올 수도 있다
+            --> 예를 들면, button 태그만 해도 type, placeholder ... 등등 되게 여러개의 속성이 있는데, 그 속성들을 다 기재해주기엔 불편하다
             ex)
             function a(A, B, C, D, ...) {
             }
