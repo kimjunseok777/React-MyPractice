@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
-import PracticeState from './hooks/practice';
+import PracticeState from './hooks/practice-1';
+import PracticeTwo from './hooks/practice-2';
 import UseCallback from './hooks/use-callback';
 import UseEffect from './hooks/use-effect';
 import UseMemo from './hooks/use-memo';
@@ -11,7 +12,7 @@ function App() {
   return <>
     {/* <UseState/> */}
     <hr/>
-    <UseRef/>
+    {/* <UseRef/> */}
     <hr/>
     {/* <UseEffect/> */}
     <hr/>
@@ -19,7 +20,8 @@ function App() {
     <hr/>
     {/* <UseCallback/> */}
     <hr/>
-    <PracticeState/>
+    {/* <PracticeState/> */}
+    <PracticeTwo/>
   </>
 }
 

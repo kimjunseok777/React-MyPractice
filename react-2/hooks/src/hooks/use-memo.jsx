@@ -14,6 +14,7 @@ const UseMemo = () => {
     // useMemo 사용 안함 :
 
     // // 즉시실행함수 : (() => {})()
+        
     // const sum = (() => {
     //     console.log('memo')
     //     return 5 + count
