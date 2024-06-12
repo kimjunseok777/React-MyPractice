@@ -315,17 +315,41 @@
 
         5. useCallback
 
-                변수도 리랜더링이 되면 다시 선언 된다
-                연산도 리랜더링이 되면 다시 연산한다
-                함수도 리랜더링이 되면 다시 선언할까?  -->  다시 실행한다
+                "변수" 도 리랜더링이 되면 다시 선언 된다
+                "연산" 도 리랜더링이 되면 다시 연산 한다
+                "함수" 도 리랜더링이 되면 다시 선언 할까?  -->  다시 선언한다
 
                 useCallback은 리랜더링 되어도 함수의 로직이 같다면 다시 선언할 필요가 없다
                 
-                function Component() {
-                        const calculate = useCallback(() => {
-                                return 5 + 3
-                        }, [])
+                ex)
+                        function Component() {
+                                const calculate = () => {
+                                        return 5 + 3   -->   리랜더링 되어도 결과값 8이 그대로이다  -->  결과 값이 같기 때문에 다시 선언할 필요가 없다
+                                }
+                                return <div> {calculate} </div>
+                        }
+                ex)
+                        function Component() {
+                                const calculate = useCallback(() => {
+                                        return 5 + 3   -->   이렇게 useCallback 으로 감싸주면 된다
+                                }, [ ])
+                                return <div> {calculate} </div>
+                        }
 
-                        return <div>{calculate}</div>
-                }
+                        ==>  보통은 axios 로 콜을 하거나, 다른 컴포넌트로 전달하거나, useEffect 안에 들어가는 함수가 있을 때는 "useCallback" 을 많이 쓴다
 
+                        ==>  즉, 다른 데로 전달되는 함수들이나, axios 나, 요직이 큰 함수들은 "useCallback" 을 많이 쓴다
+
+                        ==>  for 문이 중첩될 때, axios instance 요청해야 할 때, useEffect 에 이 함수를 실행해야할 때,
+                                 함수를 props로 전달해서 자식 컴포넌트로 전달할 때 ... 등등 이럴 때 "useCallback" 을 자주 사용한다  +  div 를 return 해야할 때
+
+                        ==>  연산 2회 이상할 때 자주 씀 (중첩 for 문, fetch, useEffect, 다른 컴포넌트에 전달하는 함수 ... 등등 정의해서 사용한다)
+
+
+===================================================================================================
+
+
+** 경로 이동 : day01.txt  -->  use-callback.jsx
+
+
+===================================================================================================
