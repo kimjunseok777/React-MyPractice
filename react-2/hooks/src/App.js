@@ -1,10 +1,22 @@
 // import logo from './logo.svg';
 import './App.css';
+import PracticeState from './hooks/practice';
+import UseEffect from './hooks/use-effect';
+import UseMemo from './hooks/use-memo';
+import UseRef from './hooks/use-ref';
 import UseState from './hooks/use-state';
 
 function App() {
   return <>
     <UseState/>
+    <hr/>
+    <UseRef/>
+    <hr/>
+    {/* <UseEffect/> */}
+    <hr/>
+    <UseMemo/>
+    <hr/>
+    {/* <PracticeState/> */}
   </>
 }
 

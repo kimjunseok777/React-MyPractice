@@ -35,10 +35,11 @@ const UseState = () => {
 
         //==>  즉, 상태 변경 후 "같은 코드블럭 (같은 함수) 내에서" 값이 변경 되었을 것이다라고 판단 후 코드를 작성하면 절대 안된다 !!
 
-        console.log(!state)  //-->  즉, false 값이 필요하다면 그냥 "!state" 이거 쓰는 것이 맞다
+        console.log(!state)  //-->  즉, false 값이 필요하다면 그냥 "!state" 이거 쓰는 것이 맞다  -->  그래야 state가 위의 "setState(!state)" 와 동일하게 출력되는 것이다
     }
 
     return <div>
+        <h1>useState</h1>
         {state ? "진실" : "거짓"}
 
         {/* <button onClick={() => (state ? onPressTrue : onPressFalse)}>클릭</button> */}
