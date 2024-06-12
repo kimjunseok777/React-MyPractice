@@ -9,17 +9,17 @@ import UseState from './hooks/use-state';
 
 function App() {
   return <>
-    <UseState/>
+    {/* <UseState/> */}
     <hr/>
     <UseRef/>
     <hr/>
     {/* <UseEffect/> */}
     <hr/>
-    <UseMemo/>
+    {/* <UseMemo/> */}
     <hr/>
-    <UseCallback/>
+    {/* <UseCallback/> */}
     <hr/>
-    {/* <PracticeState/> */}
+    <PracticeState/>
   </>
 }
 

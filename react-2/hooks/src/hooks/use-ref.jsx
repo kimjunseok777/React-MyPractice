@@ -40,6 +40,7 @@ const UseRef = () => {
 
         // b.push({title: 'example'})
         b.current.push({title})  //-->  useRef 사용했으면, 반드시 current 로 접근해줘야 사용할 수 있다
+        
         // console.log(b)
         console.log(b.current)
 
