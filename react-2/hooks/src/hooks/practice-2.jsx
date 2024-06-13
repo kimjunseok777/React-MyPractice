@@ -1,15 +1,24 @@
-import { useRef, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 
 const PracticeTwo = () => {
 
-    const b = useRef(5)
+    const [count, setCount] = useState(1)
 
-    console.log(b)
-    console.log(b.current)
+    // const onInit = useCallback(() => {
+    //     console.log(5 + count)
+    // }, [])
+
+    const onInit = () => {
+        console.log(5 + count)
+    }
+
+    // useEffect(() => onInit(), [onInit])
 
     return <div>
-        {b.current}
+        {count}
+        <button onClick={() => setCount(count + 1)}>+</button>
+        <button onClick={onInit}>실행</button>
     </div>
 }
 export default PracticeTwo
