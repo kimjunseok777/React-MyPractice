@@ -32,7 +32,7 @@ const SignUpForm = ({setFormState}) => {
         event.preventDefault()
         alert(`${email}님 환영합니다`)
 
-        // formState = "SIGN-IN"  -->  여기에 setFormState("SIGN-IN") 이 들어가야 한다
+        // formState = "SIGN-IN"  //-->  여기에 setFormState("SIGN-IN") 이 들어가야 한다
         // 하지만 sign-up-form 에는 setFormState 가 없다  -->  상위 컴포넌트에 있으니 main 으로 가서 props 로 전달해주자
         setFormState("SIGN-IN")
     }
