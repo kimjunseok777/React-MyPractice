@@ -50,7 +50,7 @@ function Todo() {
         <S.Wrapper>
             <S.Container>
                 <S.Title>TODOLIST</S.Title>
-                <TodoList todos={todos}/>
+                <TodoList todos={todos} setTodos={setTodos}/>
                 {/* <TDButton size={'full'} variant={'primary'}> */}
                 <TDButton size={'full'} variant={'primary'} onClick={() => setIsOpenAddTodoModal(true)}>
                 추가
