@@ -35,6 +35,8 @@ const SignUpForm = ({setFormState}) => {
         // formState = "SIGN-IN"  //-->  여기에 setFormState("SIGN-IN") 이 들어가야 한다
         // 하지만 sign-up-form 에는 setFormState 가 없다  -->  상위 컴포넌트에 있으니 main 으로 가서 props 로 전달해주자
         setFormState("SIGN-IN")
+        //-->  이제 onSubmit 이벤트가 실행되면 상태 변수인 formState가 바뀌면서 로그인 페이지로 이동하게 되는 것이다
+        //-->  이렇게 여기서 setFormState 상태 함수 사용하면, main.jsx 에서 적용되는 것이다
     }
 
     return <S.Form onSubmit={onSubmitSignUp}>

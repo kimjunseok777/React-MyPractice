@@ -32,9 +32,7 @@
         ) 사용법 :  input 태그에 ref 속성으로 접근할 수 있다
 
                         -->  ex) const titleInputRef = useRef()
-                                      <input ref={titleInputRef} />
-
-                        -->  마찬가지로, titleInputRef.current.value  -->  이처럼 입력값에 접근할 때도 current 로 접근해야한다
+                                      <input ref={titleInputRef} />  -->  titleInputRef.current.value  -->  이처럼 입력값 저근할 때도 current 로 접근
 
         ) 주의할 점 :  useRef 로 선언해준 변수에 접근할 때는 반드시 "current" 로 접근해야한다
                             --> useRef 로 선언해주면 current 가 key 값인 변수로 되어있기 때문이다
@@ -76,7 +74,7 @@
 
                         -->  즉, 의존성 배열의 값이 "상태" 가 들어갈 수도 있고, 일반적인 자바스크립트 변수가 들어갈 수도 있다
 
-                        ==>  중요한 건, 상태가 바뀌었을 때 이 배열 안에 들어가있는 값이 변했냐, 안변했냐 이다
+                        ==>  중요한 건, 상태가 바뀌었을 때 이 배열 안에 들어가 있는 값이 변했냐, 안 변했냐 이다
 
         ) 사용법 :  return ( ) => { }
         
@@ -105,6 +103,7 @@
 
                         -->  useEffect 와 비슷하다고 생각해서, useEffect 에 return 을 적고 사용해버리면 안된다
                                 (useEffect 에서 return 문은 "언마운트" 시에 사용하는 것이라 엄연히 useMemo 와 기능이 다르다)
+                                (useEffect 에서 return 문은 익명함수와 함께 쓰이며, 언마운트 시에 실행된다)
 
                         -->  의존성 배열에는 useMemo 를 재실행할 기준이 되는 값이 들어간다
                         -->  리랜더링 시에 의존성 배열의 값이 바뀌어 있다면, useMemo 는 재실행하여 재연산한다

@@ -15,7 +15,7 @@ const SignInForm = () => {
 
         if(!email.value.trim() || !password.value.trim()) return
         if(email.value === "test" && password.value === "test") {
-            return navigate("/todo/3")
+            return navigate("/todo/3")  //-->  로그인에서 투두로 이동할 때는 formState 상태변수를 이용하는 것이 아닌, useNavigate 로 이동한다
         }
         alert("아디이와 비밀번호를 확인해주세요")
     }

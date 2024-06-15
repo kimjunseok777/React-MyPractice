@@ -53,7 +53,8 @@ function Todo() {
                 <TodoList todos={todos} setTodos={setTodos}/>
                 {/* <TDButton size={'full'} variant={'primary'}> */}
                 <TDButton size={'full'} variant={'primary'} onClick={() => setIsOpenAddTodoModal(true)}>
-                추가
+                    {/* 여기서 TDButton 컴포넌트에 클릭 이벤트 넣으려면 나머지 매개변수 {...rest} 넣어줘야한다  -->  왜일까? */}
+                    추가
                 </TDButton>
             </S.Container>
         </S.Wrapper>

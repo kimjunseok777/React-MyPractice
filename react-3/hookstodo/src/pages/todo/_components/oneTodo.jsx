@@ -42,10 +42,10 @@ const OneTodo = ({todo, deleteTodo, updateTodo}) => {
 
         setIsEditMode(true) //--> 수정모드 키는 것 (기본값이 false 인데, true 로 바꿔줘서 버튼의 텍스트를 "수정" 에서 "완료" 로 바꿔준다  -->  수정모드가 켜진 것이다)
     }
+
     const onPressEdit = () => {
         //--> 완료 버튼을 누르면 실행되는 함수이다
         setIsEditMode(false) //--> 수정모드 끄는 것
-
         /*
             수정할 때 필요한 것 :
             selectTodo = {...selectTodo, content: content.current.value}  -->  selectTodo 의 요소를 바꾸면, 이 배열 요소가 바뀌는 것이다
@@ -56,7 +56,6 @@ const OneTodo = ({todo, deleteTodo, updateTodo}) => {
             필요한 input 값은 무엇인가?  -->  setTodos, todos, todoId, content
             setTodos, todos 는 어디에 있을까?  -->  todoList.jsx (delete 때 내가 전달했다는 것을 알고 있어야 한다)
         */
-
         // updateTodo(todo.id, contentRef.current.value)
         updateTodo({
             todoId: todo.id,

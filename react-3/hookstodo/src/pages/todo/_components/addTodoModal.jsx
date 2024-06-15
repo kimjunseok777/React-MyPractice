@@ -21,11 +21,11 @@ const AddTodoModal = ({setIsOpenAddTodoModal, todos, setTodos}) => {
         const newTodo = {
             id: Math.floor(Math.random() * 1000000),
             title: event.target.title.value,
-            content: event.target.content.value,
+            content: event.target.content.value, //-->  form 태그에 onSubmit 이벤트를 넣어줬고, 그 안에 있는 input 을 타겟팅해서 value를 가져오는 것이다
             state: false
         }
 
-        setTodos([...todos, newTodo])  //-->  복사본 배열을 ...todos 로 생성하고, 그 배열의 마지막 요소로 newTodo 를 넣어준 것이다
+        setTodos([...todos, newTodo])  //-->  복사본 배열을 전개연산자인 ...todos 로 생성하고, 그 배열의 마지막 요소로 newTodo 를 넣어준 것이다
         // 이렇게 모두 작성했으면 추가 요직이 끝난 것이다
         setIsOpenAddTodoModal(false)
     }

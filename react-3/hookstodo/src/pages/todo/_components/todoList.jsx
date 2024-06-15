@@ -3,12 +3,16 @@ import OneTodo from "./oneTodo"
 
 const TodoList = ({todos, setTodos}) => {
 
+    
+    // 삭제 :
     // 여기서 deleteTodo 함수를 만들어 주고, oneTodo.jsx 로 속성으로 전달 해서, 클릭 이벤트로 매개변수를 전달받는 함수가 되는 것이다
     const deleteTodo = (todoId) => {
         const filterTodo = todos.filter((todo) => todo.id !== todoId)
         setTodos(filterTodo)
     }
 
+    
+    // 수정 :
     // 수정 요직 만들기 위해 updateTodo 함수 만들어서 oneTodo.jsx 로 속성으로 전달해준 것 (todos, setTodos 가 todoList.jsx 에 있기에 여기서 만들어 주고 전달한 것)
     const updateTodo = ({todoId, content}) => {
         const temp_todos = [...todos] //--> 복사본 배열 생성 (새로운 주소 생성)
