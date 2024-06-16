@@ -30,14 +30,14 @@ const OneTodo = ({todo, deleteTodo, updateTodo}) => {
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // 수정 (갱신, Update) 요직 만들어보자
-    const [isEditMode, setIsEditMode] = useState(false) //-->  화면이 바뀌기에 상태를 만들어준 것이다
+    const [isEditMode, setIsEditMode] = useState(false) //-->  화면이 바뀌기에 상태를 만들어준 것이다 (수정시작 , 수정완료 모드가 나뉘기 때문)
     //-->  각각의 <OneTodo/> 마다 상태를 생성해준 것이다
 
     const contentRef = useRef()
 
     const onPressChangeEditMode = () => {
         //--> 수정 모드가 아닐 때, 수정 모드로 변경되는 함수이다
-        //--> content 를 input 으로 대체하는 방법으로 진행할 거다  -->  수정 버튼을 누르면 수정 모드로 변하고, 버튼이 완료 버튼으로 바뀔 것이다
+        //--> 기존에 있던 content 를 textarea 로 대체하는 방법으로 진행할 거다  -->  수정 버튼을 누르면 수정 모드로 변하고, 버튼이 완료 버튼으로 바뀔 것이다
         //--> 그리고 완료 버튼을 누르면 이 onPressEdit 함수가 실행되고, 다시 수정 버튼으로 돌아올 것이다
 
         setIsEditMode(true) //--> 수정모드 키는 것 (기본값이 false 인데, true 로 바꿔줘서 버튼의 텍스트를 "수정" 에서 "완료" 로 바꿔준다  -->  수정모드가 켜진 것이다)

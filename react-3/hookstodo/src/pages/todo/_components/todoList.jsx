@@ -22,7 +22,7 @@ const TodoList = ({todos, setTodos}) => {
 
         temp_todos[selectTodoIndex] = {
             ...temp_todos[selectTodoIndex],
-            content
+            content  //-->  밑에 content 가 한번 더 등장하기에, 위에서 먼저 전개된 content 가 매개변수로 받은 content 로 덮어 씌워진다
         } //--> 수정할 부분을 전개 연산자로 내용 그대로 받아오고, content 만 바꿔주겠다는 애기이다
 
         // temp_todos[selectTodoIndex].content = content  -->  이렇게 바꿔줘도 된다
