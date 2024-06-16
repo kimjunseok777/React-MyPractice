@@ -1,24 +1,15 @@
-import logo from './logo.svg';
 import './App.css';
+import TodoProvider from './context/todo.context';
+import AddTodoModal from './components/addTodoModal';
+import TodoList from './components/todoList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoProvider>
+        {/* 이 덮개 안에 있는 컴포넌트들은 내가 만든 전역상태를 공유할 수 있다 */}
+        <AddTodoModal/>
+        <TodoList/>
+    </TodoProvider>
   );
 }
 
