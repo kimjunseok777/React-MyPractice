@@ -7,11 +7,9 @@ import { useState } from 'react';
 
 function Todo() {
 
-    // let isOpenAddTodoModal = false
     const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false)
-    //-->  상태로 바꿔줬으면, 추가 버튼에 클릭 이벤트도 넣어주자
 
-    // const todos = [
+    // const [todos, setTodos] = useState([
     //     {
     //         id: 1,
     //         title: "example-1",
@@ -24,36 +22,17 @@ function Todo() {
     //         content: "example-2",
     //         state: false
     //     },
-    // ] 
-
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            title: "example-1",
-            content: "example-1",
-            state: true
-        },
-        {
-            id: 2,
-            title: "example-2",
-            content: "example-2",
-            state: false
-        },
-    ])
+    // ])
 
     return <>
         {isOpenAddTodoModal && <AddTodoModal
-        todos={todos}
-        setTodos={setTodos}
         setIsOpenAddTodoModal={setIsOpenAddTodoModal}
         />}
         <S.Wrapper>
             <S.Container>
                 <S.Title>TODOLIST</S.Title>
-                <TodoList todos={todos} setTodos={setTodos}/>
-                {/* <TDButton size={'full'} variant={'primary'}> */}
+                <TodoList/>
                 <TDButton size={'full'} variant={'primary'} onClick={() => setIsOpenAddTodoModal(true)}>
-                    {/* 여기서 TDButton 컴포넌트에 클릭 이벤트 넣으려면 나머지 매개변수 {...rest} 넣어줘야한다  -->  왜일까? */}
                     추가
                 </TDButton>
             </S.Container>

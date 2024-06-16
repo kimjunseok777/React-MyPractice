@@ -1,32 +1,25 @@
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
+import { useTodo } from "../../../store/todo.store";
 
 
-const AddTodoModal = ({setIsOpenAddTodoModal, todos, setTodos}) => {
+const AddTodoModal = ({setIsOpenAddTodoModal}) => {
 
-    // onSubmit 이벤트에 들어갈 함수 작성
+    const {todos, setTodos} = useTodo()
+    //-->  이러면 전역상태 만들어준 것 import 받아온 것이다 (객체 구조분해할당)
+
     const onPressAddTodo = (event) => {
-        event.preventDefault()  //-->  이것은 form 이벤트에서는 반드시 작성해주는 것이 좋다  -->  안그러면 ? 가 생기면서 주소를 이동시켜버린다
-        /*
-            추가 요직을 만들때 최종적으로 필요한 코드가 무엇인지 생각해보자
-            -->  setTodos
-            -->  setTodos([...todos, newTodo])
+        event.preventDefault()
 
-            * setTodos  -->  todo.jsx 에 있다  -->  props 로 전달 받아야한다
-            * todos  -->  todo.jsx 에 있다  -->  props 로 전달 받아야한다
-            * newTodo  -->  이것만 여기서 만들어 주면 된다
-                                  -->  "입력값" 을 받아오기 위해 input 태그와 textarea 태그에 name 속성을 만들어주자
-        */
         const newTodo = {
             id: Math.floor(Math.random() * 1000000),
             title: event.target.title.value,
-            content: event.target.content.value, //-->  form 태그에 onSubmit 이벤트를 넣어줬고, 그 안에 있는 input 을 타겟팅해서 value를 가져오는 것이다
+            content: event.target.content.value,
             state: false
         }
 
-        setTodos([...todos, newTodo])  //-->  복사본 배열을 전개연산자인 ...todos 로 생성하고, 그 배열의 마지막 요소로 newTodo 를 넣어준 것이다
-        // 이렇게 모두 작성했으면 추가 요직이 끝난 것이다
+        setTodos([...todos, newTodo])
         setIsOpenAddTodoModal(false)
     }
 
@@ -36,7 +29,6 @@ const AddTodoModal = ({setIsOpenAddTodoModal, todos, setTodos}) => {
                 <S.Title>
                     <h1>ADD TODO LIST</h1>
                     <button type='button' onClick={() => setIsOpenAddTodoModal(false)}> x </button>
-                    {/*이 버튼은 submit이 되면 안되기에 type 을 button 이라고 명시해준 것이다*/}
                 </S.Title>
                 <S.Content>
                     <input name="title" placeholder="제목을 입력해주세요"/>
