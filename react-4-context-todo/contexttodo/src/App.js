@@ -9,7 +9,7 @@ import TodoProvider from './store/todo.store';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-        <TodoProvider>
+        <TodoProvider> {/*전역상태 사용할 컴포넌트의 상위 컴포넌트 Provider 로 덮어준 것*/}
             <RouterProvider router={router} />
         </TodoProvider>
     </ThemeProvider>

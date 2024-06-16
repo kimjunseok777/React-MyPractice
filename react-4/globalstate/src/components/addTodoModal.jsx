@@ -4,7 +4,8 @@ import { TodoContext } from "../context/todo.context"
 
 const AddTodoModal = () => {
 
-    // const todo = useContext(TodoContext)
+    // 전달한 값은 {todos, setTodos} 이다
+    // const todo = useContext(TodoContext)  //-->  console.log(todo)  //  {todos, setTodos} 가 나온다
     const {todos, setTodos} = useContext(TodoContext)
     // 처음에 createContext 로 만들어준 것 받아온 것이다 (createContext 만들어준 공간을 사용하는 것이다)
 

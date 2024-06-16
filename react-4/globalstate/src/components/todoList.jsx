@@ -11,6 +11,8 @@ const TodoList = () => {
     // console.log(todo, "todo-list")  //-->  "todo-list" 는 AddTodoModal 컴포넌트와 구분해주기 위해 문자열로 넣어준 것
     console.log(todos, "todo-list")
 
+    //==>  "add-modal" , "todo-list" 이 콘솔창에 함께 뜨면서 배열의 요소가 동일하게 추가된다  -->  같은 상태(todos)를 공유하고 있다는 의미이다
+
     return <div>:)</div>
 }
 export default TodoList
