@@ -1,18 +1,18 @@
 import { useReducer } from "react"
-import { userReducer } from "../reducer/user.reducer"
+import { userReducer } from "../reducer/user.reducer"  //-->  userReducer 로 사용할 함수 import 받아준 것이다
 
 
 const UserList = () => {
 
 
     // 이 컴포넌트에서 상태를 선언해줄 건데, 이번에는 useState 로 선언하지 않고, useReducer 로 선언해줄 것이다
-    //-->  앞에서 만든 useReducer 함수 import 받아온 것
+    //-->  앞에서 만든 userReducer 함수 import 받아온 것
     //-->  여기서 dispatch 가 userReducer 로 객체 (action) 를 전달해주는 매개체이다
     const [users, dispatch] = useReducer(userReducer, [{
         id: 1,
         name: "김사과"
     }])
-    // const [ 상태명 , action 전달 함수 ] = useReducer( 생성한 reducer , [ 기본값 ] )
+    // const [ 상태명 , action 전달 함수 ] = useReducer( 생성한 reducer , 기본값 )
 
 
     const handlePressAddUser = () => {
@@ -21,8 +21,9 @@ const UserList = () => {
         // 얘는 다른 거 다 필요없다, 그냥 dispatch 넣어주면 된다
         //--> dispatch 의 괄호 안에 action, 즉 내가 전달하고 싶은 객체를 넣으면 된다
         //--> type , payload 전달하면 된다  -->  type 으로 "추가" or "삭제" 중 어떤 요직 사용할지 정해지고, payload 는 사용될 내용물이다
+        //--> payload 안에 id, name 이 있다
         dispatch({
-            type: "ADD_USER",
+            type: "ADD_USER",  //-->  [...state, action.payload]  -->  원래 있던 배열에 밑의 payload 를 배열의 요소로 추가하는 것이다
             payload: {
                 id: Math.floor(Math.random() * 1000000),
                 name: "이멜론"
