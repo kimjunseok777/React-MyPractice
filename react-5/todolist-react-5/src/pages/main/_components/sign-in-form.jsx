@@ -17,7 +17,7 @@ const SignInForm = () => {
 
     const [email, handleChangeEmailValue] = useInput("")  //  [ value , onChange ]  -->  return 되는 값을 배열 구조분해할당 한 것이다
     const [password, handleChangePasswordValue] = useInput("")
-    //--> 첫번째가 상태이고, 두번째가 앞의 상태를 set 해주는 함수이다  -->  set(event.target.value)
+    //-->  첫번째가 상태이고, 두번째가 앞의 상태를 set 해주는 함수이다  -->  ex) setEmail(event.target.value)
 
     /*
         다른 입력창이 있다고 하더라도 이제 함수나 상태를 반복 선언할 필요가 없어지는 것이다
@@ -30,12 +30,11 @@ const SignInForm = () => {
         }
     */
 
-    const isValidEmail = email.includes("@")  //-->  email 입력창에 @ 가 있어야 true 가 나온다
+    const isValidEmail = email.includes("@")  //-->  email 입력창에 @ 가 있어야 true 가 나온다  -->  기본값이 " " 이고, set 함수로 인해서 값이 바뀐다
     const isValidPassword = password.length >= 8  //-->  password 입력창에 text 길이가 8 이상이면 true 가 나온다
 
     //-->  이 조건에 따라서 error 메세지를 보여줄 것이기 때문에, FormInput 의 속성으로 error 를 넣어주자
     //-->  ex) error={ !isValidEmail  &&  email  &&  "이메일 양식이 맞지 않습니다" }  -->  isValidEmail 가 false 이고, email 값이 있다면 에러메세지가 뜬다
-
 
 
     const handlePressSignIn = (event) => {
@@ -55,7 +54,7 @@ const SignInForm = () => {
 
     return <S.Form onSubmit={handlePressSignIn}>
 
-        {/*이 input 의 값이 바뀔 때마다 handleChangeEmailValue 함수의 로직인 setEmail 실행으로 인해서 email 이란 상태의 값이 바뀌는 것이다*/}
+        {/*이 input 의 값이 바뀔 때마다 handleChangeEmailValue 함수의 로직인 setValue (상태변경함수) 실행으로 인해서 email 이란 상태의 값이 바뀌는 것이다*/}
         <FormInput label={"이메일"} placeholder={"email"} size={3} name={'email'} onChange={handleChangeEmailValue}
             error={!isValidEmail && email && "이메일 양식이 맞지 않습니다"}
             // isValidEmail 가 false 이고, email 이 값이 들어있다면 이 "문자열" 을 반환하는 것이다  -->  값이 아예 비어있을 때 문자열 나오는 것을 막기 위함
@@ -70,7 +69,7 @@ const SignInForm = () => {
 
         <TDButton variant={'primary'} size={'full'} shape={'shape'} disabled={!isValidEmail || !isValidPassword}>
             {/*
-                disabled 가 true 이면 버튼이 클릭이 안된다  -->  true 가 되는 시점은 언제일까  -->  입력값이 유효하지 않을 때 버튼은 눌러지면 안된다
+                disabled 가 true 이면 버튼이 클릭이 안된다  -->  true 가 되는 시점은 언제일까  -->  입력값이 유효하지 않을 때 버튼을 비활성화 시켜놔야한다
                 -->  이메일, 비밀번호 둘중에 하나라도 값을 만족하지 않는 상태라면, disabled 는 true 로 버튼을 비활성화시킨다
             */}
             {/*

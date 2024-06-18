@@ -14,7 +14,7 @@ function App() {
       email: "email",
       password: "password"
     }
-  })//-->  RHF 는 실시간 변화를 감지하는 것은 아니다  -->  그래서 이렇게 mode 를 onChange 또는 all 로 바꿔주면 실시간으로 다 감지하게 만들어줄 수 있다
+  })//-->  RHF 는 실시간 변화를 감지하는 것은 아니다  -->  그래서 이렇게 mode 를 'onChange' 또는 'all' 로 바꿔주면 실시간으로 다 감지하게 만들어줄 수 있다
   //-->  이렇게 하면 값이 바뀔 때마다 감지한다
   //-->  mode 를 생략한다면  -->  form 이 submit 이 이루어졌을 때만 작동을 한다
   //-->  defaultValues 를 넣으면 밑에 register 해준 이름으로 기본값도 넣어줄 수 있다
@@ -26,11 +26,13 @@ function App() {
   }
 
   return (
+
     <form onSubmit={handleSubmit(onPressSubmit)}>{/*-->  이렇게 위의 handleSubmit 넣어주고, 그 안에 실행시킬 함수 넣어줘야한다*/}
       <input
         {...register("email", {required: "이메일을 입력해주세요", minLength: 8})}
       />
       {errors.email && errors.email.message}
+      {/*이메일 에러가 있다면, 메세지를 보여줘라*/}
 
       <input
         {...register("password", {
@@ -38,9 +40,12 @@ function App() {
         })}
       />
       {errors.password && errors.password.message}
+      {/*비밀번호 에러가 있다면, 메세지를 보여줘라*/}
 
       <button disabled={!isValid}></button>
+      {/*유효하지 않은 것이 있다면, 버튼을 비활성화 시켜라*/}
     </form>
+
   );
 }
 

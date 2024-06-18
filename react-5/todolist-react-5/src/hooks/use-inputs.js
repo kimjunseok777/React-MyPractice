@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
- //-->  이번에는 value 로 객체를 받을 것이다
+ //-->  이번에는 value 로 객체를 받을 것이다  -->  기본값 넣을 때도 객체로 넣어야한다
 const useInputs = (initialValue) => {
 
     const [value, setValue] = useState(initialValue)
@@ -9,7 +9,7 @@ const useInputs = (initialValue) => {
     //-->  event 가 들어오면 setValue 하는데, event 의 input 의 name 과 input 의 value 로 객체로 만들겠다는 뜻이다 (같은 key 가 들어오면, 나중에 들어온 것이 덮어 씌운다)
     const onChangeInputs = (event) => {
         setValue({//-->  value 를 { 객체 } 로 만들어준 것이다
-            ...value,
+            ...value,//-->  기본값을 객체로 넣어준 것을 확인 가능하다 (sign-up-form.jsx)
             [event.target.name]: event.target.value  //-->  input 의 name 속성이 key 가 되고, 입력값이 value 가 되는 것이다
                                                                                    //-->  key 에 따라 입력값 저장되는 공간이 달라지는 것이다
             /*
@@ -27,7 +27,7 @@ const useInputs = (initialValue) => {
         })
     }
     return [value, onChangeInputs]
-    //-->  value 는 그대로이지만, 함수에서 실행시키는 setValue 가 객체형태로 데이터를 변형시키고, 상태를 변형시키는 것이다
+    //-->  함수에서 실행시키는 setValue 가 객체형태로 데이터를 변형시키고, 상태를 변형시키는 것이다 (value 도 기본값이 객체로 들어간다)
 }
 export default useInputs
 
