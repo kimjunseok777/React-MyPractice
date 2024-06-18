@@ -40,14 +40,14 @@ const RootLayout = () => {
     const location = useLocation()  // react-router-dom 에서 지원하는 함수
     // useLocation() 은 현재 위치한 주소를 가지고올 수 있는 함수
 
-    console.log(location) //-->  콘솔 찍어보면, 객체에서 pathname 에 주소값("/" or "/todo") 이 들어가있는 것을 확인 가능하다
-    console.log(location.pathname) // "/" or "/todo/~"
+    // console.log(location) //-->  콘솔 찍어보면, 객체에서 pathname 에 주소값("/" or "/todo") 이 들어가있는 것을 확인 가능하다
+    // console.log(location.pathname) // "/" or "/todo/~"
 
     const metadata = dynamicLayoutMetadata(location.pathname)
     //-->  내가 필요한 건 "/todo" 인데, "/todo/3(뒤에 뭐가 붙음)" 가 와버린다  -->  split 을 하거나, slice 를 해서 쪼개거나 없애줘야 한다
     //-->  위의 dynamicLayoutMetadata 함수에서 매개변수로 받은 pathname 을 쪼개고, "LAYOUT_METADATA" 배열의 키로 접근해서 객체의 값을 반환시켜보자
 
-    console.log(metadata)
+    // console.log(metadata)
     //--> Main 페이지면 {header: true, footer: true} , Todo 페이지면 {header: false, footer: true}
 
 

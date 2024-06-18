@@ -10,7 +10,7 @@ const FormInput = ({label, size, containerStyle, error, ...props}) => {
     </S.InputBox>
 
     <p style={{
-        visibility: error ? "visible" : "hidden",
+        visibility: error ? "visible" : "hidden",  //-->  에러가 있으면 보여주고, 없으면 보여주지 않는다
         color: "red",
         padding: 0,
         fontSize: 10,
@@ -45,7 +45,7 @@ const InputBox = styled.div`
     align-items: center;
     position: relative;
     /* margin-bottom: 16px; */
-    //-->  컴포넌트에 마진을 주면, 마진이 다른 재사용하는 곳에서 재사용이 어렵다  -->  마진 이렇게 컴포넌트에 직접적으로 주면 안된다
+    //-->  컴포넌트에 마진을 직접적으로 주면, 컴포넌트 재사용이 어려워진다  -->  마진 이렇게 컴포넌트에 직접적으로 주면 안된다
     //-->  어떤 wrapper 같은 거로 감싸줘서 간격을 주거나, 사이에 어떤 요소를 끼워넣어서 간격을 줘야된다
     //==>  컴포넌트에 마진 주면 안된다
     ${(props) => sizeCSS[props.size]}

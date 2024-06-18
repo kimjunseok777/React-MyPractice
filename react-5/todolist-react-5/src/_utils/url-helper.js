@@ -7,7 +7,7 @@ export function dynamicLayoutMetadata(pathName) {
     //-->  ("/" or "/todo") 와 같은 문자열이 들어가면 객체의 "닷 접근법" 이 안되기 때문에, "대괄호 접근법" 을 사용한 것이다
 
     // 투두 페이지일 때 연산 - 1 :
-    console.log(pathName.split("/")) // ['', 'todo', '3'] 인 배열이 온다  -->  1번째 인덱스 (todo) 를 가져오고, "/" 를 붙여주면 된다
+    // console.log(pathName.split("/")) // ['', 'todo', '3'] 인 배열이 온다  -->  1번째 인덱스 (todo) 를 가져오고, "/" 를 붙여주면 된다
     // return LAYOUT_METADATA["/" + pathName.split("/")[1]] // "/" or "/todo"  -->  메인페이지일 때는 "/" 로 쪼개면 다 없어지기 때문에 그냥 "/" 더해주면 똑같아지는 것이다
 
     // 투두 페이지일 때 연산 - 2 :
