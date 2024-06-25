@@ -7,7 +7,7 @@ function App() {
   const {
     register,
     formState: {isValid, errors},
-    handleSubmit  //-->  form 의 onSubmit 이벤트 할 때, 이 handleSubmit 넣어주고, 그 안에 함수를 넣어줘야 된다
+    handleSubmit  //-->  form 의 onSubmit 이벤트 할 때, 이 handleSubmit 넣어주고, 그 안에 실행시킬 함수를 넣어주면 된다
   } = useForm({
     mode: 'all',
     defaultValues: {
