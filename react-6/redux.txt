@@ -91,5 +91,13 @@ Redux
         -->  npm i redux
         -->  npm i react-redux  이렇게 두개 설치해주자 ( npm i redux react-redux )
 
+        -->  Provider 만들어주자 (import 받아야 된다)
+
+
+        ** 경로 이동 : App.js  -->  todo.jsx  -->  App.js (Provider 에 store 라고 하는 값을 전달해주자)
+
+
+        ** 경로 이동 : App.js  -->  todo.reducer.js (useReducer 사용법 공부하고 reducer 만들어주자)
+
 
 ===================================================================================================
