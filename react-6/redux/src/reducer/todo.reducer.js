@@ -1,9 +1,30 @@
 
 
 // 이렇게 파일 만들 때 "점" 을 두개 쓰면 "todo" 가 메인 이름이 되고, "reducer" 가 설명이 된다, 그리고 마지막의 js 가 확장자(exe) 가 되는 것이다
-//-->  결론은 점이 두개 들어가도 상관 없다
+//-->  결론은 파일명 작성할 때 점이 두개 들어가도 상관 없다
 
-//==>  useReducer 그대로 사용해주면 된다  -->  "react-4" 가서 한번 더 공부하고 오자
+//==>  useReducer 그대로 사용해주면 된다  -->  "react-4" 가서 useReducer 공부 마치고 redux 공부하자
 
-const reducer = (state, action) => {}
+// 함수 이름은 마음대로 작성해줘도 된다
+//-->  사용할 때 useReducer 를 import 받는 것이다  -->  현재는 사용하는 것이 아닌, useReducer 로 사용할 함수를 "생성" 해주는 것이다
+
+const initialState = [
+    {
+        id: 1,
+        title: "title-1",
+        content: "content-1"
+    }
+]
+
+// state 의 기본값을 initialState 로 준 것이다 (defaultValue)
+const reducer = (state=initialState, action) => {
+    switch(action.type) {
+
+        case "ADD_TODO":
+            return [...state, action.payload]
+
+        default:
+            return state
+    }
+}
 export default reducer

@@ -160,7 +160,9 @@ hookstodo 전역상태관리 모두 마치면 다시 globalstate.txt 로 경로 
 
 useReducer (상태의 변화를 재사용하기 위해서 사용하는 것이다)
         
-        -->  useReducer 는 dispatch 를 통해 상태를 변경시키는 요직이 작성되어있는 어떠한 객체를 통째로 전달하는 것이다 (action 으로 전달)
+        -->  useReducer 는 dispatch 를 통해 상태를 변경시키는 요직이 작성되어있는 어떠한 "객체" 를 통째로 전달하는 것이다 (action 으로 전달)
+                (dispatch 로 전달할 객체 안에 type, payload ... 등등 작성해서 전달해주면 된다)
+
         -->  밑의 useReducer 를 사용하는 두가지 이유를 알아보자
 
 
@@ -173,7 +175,7 @@ useReducer (상태의 변화를 재사용하기 위해서 사용하는 것이다
                       -->  다만, 커스텀 훅함수의 등장으로 사용도가 많이 떨어지는 편이다 (자주 사용하지는 않는다)
 
 
-        ) 2. action 을 전달한다 (객체 전달)
+        ) 2. action 을 전달한다 (객체 전달)  -->  전달받은 action 에 따라서 실행시키는 요직이 달라지는 것이다
 
                 ex) 사용자가 버튼을 누른다  -->  dispatch 라고 하는 매개체가 있다 (action 을 전달해주는 역할)
                       -->  dispatch 를 통해서 action 이라는 객체 전달  -->  action 을 전달받고 상태를 변화시킬 수 있는 것이 useReducer 이다
@@ -184,7 +186,7 @@ useReducer (상태의 변화를 재사용하기 위해서 사용하는 것이다
 
 useReducer 사용법 :
 
-        먼저 상태 변화를 시켜줄 요직들이 들어가 있는 (재사용할 수 있는) 함수를 만들어주고 export 해줘야한다
+        먼저 상태 변화를 시켜줄 요직들이 들어가 있는 (재사용할 수 있는) 함수를 만들어주고 export 해줘야한다  -->  배개변수 순서는 ( state , action )
         -->  상태변화 요직은 switch 문으로 분기를 나눈다  -->  action 을 매개변수로 받는데, 이 action 의 키값으로 어떠한 상태 변화를 사용할지 정하는 것이다
 
 
@@ -202,19 +204,22 @@ useReducer 사용법 :
                                 default : return 상태
                         }
                 }
-                ==>  이렇게 전달받은 action 에 따라서 실행시키는 상태 변화 요직이 달라지는 것이다
+                ==>  이렇게 전달받은 action 에 따라서 실행시키는 상태 변화 요직이 달라지는 것이다 (재사용하기 편하다)
 
 
         ) useReducer 사용 : 상태를 useState 로 선언하지 않고 useReducer 로 선언한다
 
                 ) 초기 선언 :
-                        const [ 상태명 , dispatch ] = useReducer( 생성한 Reducer 함수 , [ 초기값 ] )  -->  이렇게 "useReducer" 로 상태를 선언한다
-                                                                                                                                                                 (useState 로 선언하지 않는다)
+                        const [ 상태명 , dispatch ] = useReducer( 앞에서 생성한 함수 , [ 상태의 초기값 ] )  -->  이렇게 "useReducer" 로 상태를 선언한다
+                                                                                                                                                                        (useState 로 선언하지 않는다)
 
                 ) 이벤트 등으로 실행할 함수 내에 작성 (상태변경) :
                         dispatch({
                                 객체의 key 와 value 값 작성 ...
+                                type: ... ,
+                                payload: { id: ... , name : ... }  ...  등과 같이 작성해주면 된다
                         })
+                        ==>  이렇게 dispatch 안에 "action" 이라는 이름으로 전달할 객체를 작성해주면 된다
 
 
 ===================================================================================================
