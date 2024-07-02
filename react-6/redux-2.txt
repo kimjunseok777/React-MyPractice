@@ -1,0 +1,16 @@
+
+
+
+** 경로 이동 : globalstate.txt  -->  App.js (redux 패키지)
+
+        -->  다음에 배우는 것이 RTK (Redux Tool Kit) 이다  -->  RTK 는 따로 설치해주지 않아도 여러 플러그인들을 제공해준다
+
+        -->  하지면 현재는 RTK 가아닌 그냥 redux 를 사용하고 있기에 플러그인들을 섪치해주자 (로거 , 개발자 도구  -->  이 플로그인들을 사용해줄 것이다)
+
+        ==>  npm i redux-devtools-extension
+        ==>  npm i redux-logger
+        )  이거 사용하려 했지만, 버전에 관한 이슈가 있어서, redux 가 아닌 RTK 로 넘어가서 진행해보자
+
+        ** 경로 이동 :  react-7 (넘어가서 RTK 공부해보자)
+
+
