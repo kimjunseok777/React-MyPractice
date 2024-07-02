@@ -202,20 +202,19 @@ useReducer 사용법 :
                                 default : return 상태
                         }
                 }
+                ==>  이렇게 전달받은 action 에 따라서 실행시키는 상태 변화 요직이 달라지는 것이다
 
 
         ) useReducer 사용 : 상태를 useState 로 선언하지 않고 useReducer 로 선언한다
 
                 ) 초기 선언 :
-                        const [ 상태명 , dispatch ] = useReducer( 생성한 Reducer 함수 , [ 초기값 ] )
+                        const [ 상태명 , dispatch ] = useReducer( 생성한 Reducer 함수 , [ 초기값 ] )  -->  이렇게 "useReducer" 로 상태를 선언한다
+                                                                                                                                                                 (useState 로 선언하지 않는다)
 
                 ) 이벤트 등으로 실행할 함수 내에 작성 (상태변경) :
                         dispatch({
                                 객체의 key 와 value 값 작성 ...
                         })
-
-
-
 
 
 ===================================================================================================

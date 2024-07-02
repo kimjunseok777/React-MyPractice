@@ -23,7 +23,8 @@ const UserList = () => {
         //--> type , payload 전달하면 된다  -->  type 으로 "추가" or "삭제" 중 어떤 요직 사용할지 정해지고, payload 는 사용될 내용물이다
         //--> payload 안에 id, name 이 있다
         dispatch({
-            type: "ADD_USER",  //-->  [...state, action.payload]  -->  원래 있던 배열에 밑의 payload 를 배열의 요소로 추가하는 것이다
+            type: "ADD_USER",  //-->  [...state, action.payload]  -->  원래 있던 상태 배열 (users) 에 payload 를 배열의 요소로 추가하는 것이다
+                                               //-->  users 상태 매열은 [{ id: 1, name: "김사과"}] 이다  -->  이 배열에 요소가 추가되는 것이다
             payload: {
                 id: Math.floor(Math.random() * 1000000),
                 name: "이멜론"

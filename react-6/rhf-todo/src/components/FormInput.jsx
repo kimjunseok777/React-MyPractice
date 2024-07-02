@@ -2,12 +2,13 @@ import React from "react"
 import styled, { css } from "styled-components"
 
 const FormInput = ({label, size, containerStyle, error, register, name, ...props}) => {
+    //-->  register 로 등록시켜주기 위해 name 속성도 만들어서 전달받아준 것이다  -->  이름 (email, password ... 등등 전달받아 등록하기 위함)
 
     return <>
         <S.InputBox size={size}>
             <S.InputLabel>{label}</S.InputLabel>
-            <S.Input size={size} name={name} {...props} {...register?.(name)}/>
-            {/*--> register 전달 받은 것을 확인 가능하다*/}
+            <S.Input size={size} name={name} {...props} {...register?.(name)}/> {/*--> register 가 있다면 name 이름으로 등록하는 것이다*/}
+            {/*--> register 전달 받은 것을 확인 가능하다  -->  name 속성으로 등록해준 것을 확인할 수 있다*/}
         </S.InputBox>
                 <p style={{
                         visibility: error ? "visible" : "hidden",

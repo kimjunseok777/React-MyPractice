@@ -30,4 +30,4 @@ export const userReducer = (state, action) => {
             return state
     }
 }
-//==>  상태가 복잡하거나, 상태 변경 로직이 복잡하거나, 재사용이 많이 되는 경우  -->  reducer 를 사용하면 편리해진다
+//==>  상태가 복잡하거나, 상태 변경 로직이 복잡하거나, 재사용이 많이 되는 경우  -->  useReducer 를 사용하면 편리해진다

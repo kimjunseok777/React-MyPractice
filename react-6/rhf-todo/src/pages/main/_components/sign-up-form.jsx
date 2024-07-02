@@ -30,6 +30,8 @@ const SIGNFORM_ARRAY = [
 ]
 
 // import * as yup from "yup"
+// yup 의 스키마를 작성해준 것이다 (제약조건을 만들어 준 것이다)  -->  이 스키마를 useForm 의 "yupResolver" 에 등록해주면 된다
+//-->  npm i @hookform/resolvers/yup  -->  설치해줘야 한다
 //--------------------------------------------------------------------------------------------------------------
 const signFormSchema = yup.object().shape({
     email: yup.string().email('이메일 양식이 아닙니다').required(),
@@ -72,6 +74,7 @@ const SignUpForm = ({setFormState}) => {
                 // {...register(form.name)}
                 register={register}
                 //---------------------------------------------
+                
             />)
         }
         <TDButton variant={'primary'} size={'full'} shape={'shape'} disabled={!isValid}>회원가입</TDButton>
