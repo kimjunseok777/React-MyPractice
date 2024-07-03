@@ -70,7 +70,7 @@ const SignUpForm = ({setFormState}) => {
                 // onChange={onChangeInputs}
 
                 //---------------------------------------------
-                error={errors[form.name]?.message}
+                error={errors[form.name]?.message} //--> map 이기에 순회해서 [form.name] 이름으로된 에러가 있다면 메세지를 보여주는 것이다
                 // {...register(form.name)}
                 register={register}
                 //---------------------------------------------
