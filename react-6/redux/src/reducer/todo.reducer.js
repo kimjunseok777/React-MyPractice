@@ -13,15 +13,15 @@ const initialState = [
         id: 1,
         title: "title-1",
         content: "content-1"
-    }
+    },
 ]
 
-// state 의 기본값을 initialState 로 준 것이다 (defaultValue)
+// state 의 기본값을 initialState 로 준 것이다 (defaultValue)  -->  useReducer 로 상태를 생성할 때 [{ id : 1 , title : "title-1" , content: "content-1" }] 가 기본값이 되는 것이다
 const reducer = (state=initialState, action) => {
     switch(action.type) {
 
         case "ADD_TODO":
-            return [...state, action.payload]
+            return [...state, action.payload]  //-->  기존의 배열에서 요소를 추가하는 요직이다
 
         default:
             return state

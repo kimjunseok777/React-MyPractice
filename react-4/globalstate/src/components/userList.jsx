@@ -22,11 +22,11 @@ const UserList = () => {
         //==>  상태 변화 로직을 앞에서 만든 함수인 useReducer 에 이미 다 작성해놨기 때문에, 어떤 상태변화 로직을 어떤 데이터로 실행시킬지 그 정보만 전달해주면 되는 것이다
 
         //--> dispatch 의 괄호 안에 action, 즉 내가 전달하고 싶은 객체를 넣으면 된다
-        //--> type , payload 전달하면 된다  -->  type 으로 "추가" or "삭제" 중 어떤 요직 사용할지 정해지고, payload 는 사용될 내용물이다
+        //--> type , payload 전달하면 된다  -->  type 으로 "추가" or "삭제" 중 어떤 요직 사용할지 정해지고, payload 는 사용될 내용물이다 (상태변화에 사용될 데이터)
         //--> payload 안에 id, name 이 있다
         dispatch({
             type: "ADD_USER",  //-->  [...state, action.payload]  -->  원래 있던 상태 배열 (users) 에 payload 를 배열의 요소로 추가하는 것이다
-                                               //-->  users 상태 배열은 [{ id: 1, name: "김사과"}] 이다  -->  이 배열에 요소가 추가되는 것이다
+                                               //-->  users 상태 배열은 [{ id: 1, name: "김사과"}] 이다  -->  이 배열에 요소가 추가되는 것이다  -->  [{ id : 1 , name : "김사과" } , { payload }]
             payload: {
                 id: Math.floor(Math.random() * 1000000),
                 name: "이멜론"
@@ -44,6 +44,7 @@ const UserList = () => {
     return <div>
         <button onClick={handlePressAddUser}>추가</button>
         {/*-->  type 에 value 값에 따라 실행시키는 상태변화 로직이 달라지는 것이다  -->  즉, type 을 다르게 해서 재사용하면 되는 것이다*/}
+        {/*dispatch로 전달할 객체의 key 또는 value 값을 따르게하면 언제든지 여러가지 요직으로 재사용이 가능한 것이다*/}
     </div>
 }
 export default UserList

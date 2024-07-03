@@ -160,7 +160,7 @@ hookstodo 전역상태관리 모두 마치면 다시 globalstate.txt 로 경로 
 
 
 
-useReducer (상태의 변화를 재사용하기 위해서 사용하는 것이다)
+useReducer (상태의 변화를 재사용하기 위해서 사용하는 것이다)  )-->  "react" 에 내장되어있는 함수이다 (따로 설치 받지 않아도 된다)
         
         -->  useReducer 는 dispatch 를 통해 상태를 변경시키는 요직이 작성되어있는 어떠한 "객체" 를 통째로 전달하는 것이다 (action 으로 전달)
                 (dispatch 로 전달할 객체 안에 type, payload ... 등등 작성해서 전달해주면 된다)
