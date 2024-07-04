@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
-//-->  따로 todo.reducer.js 에서 import 받은 게 없는 것을 확인할 수 있다
+//-->  따로 todo.reducer.js 에서 import 받은 게 없는 것을 확인할 수 있다 (Provider 로 감싸줬기에, useSelector 로 가져와 사용하면 되는 것이다)
 
 
 const Todo = () => {
 
-    // useSelector 는 선택해서 가져오는 것  -->  store 에서 todo 에 있는 state 값만 가져오겠다는 의미이다
-    //-->  initialState 값인 [{id: 1 , title: "title-1" , content: "content-1"}]  이 찍히면 잘 가지고 온 것이다
+    // useSelector 는 store 에서 "상태(todo or user)" 선택해서 가져오는 것  -->  store 에서 todo 에 있는 state 값만 가져오겠다는 의미이다
+    //-->  initialState 값인 [{id: 1 , title: "title-1" , content: "content-1"}] 가 찍히면 잘 가지고 온 것이다
+    //-->  todo 라는 이름으로 import 받은 상태의 기본값이다
 
-    const todoList = useSelector((store) => store.todo)  //-->  state 가 자동으로 todoList 에 담긴다
-    //==>  store 로 값을 담아준 Provider 로 감싸줬다  -->  즉 store.todo 또는 store.user ... 이런 식으로 사용하면 되는 것이다
+    const todoList = useSelector((store) => store.todo)  //-->  state 가 자동으로 todoList 에 담긴다 (initialState 라는 이름으로 선언해준 배열이 기본값으로 담긴다)
+    //==>  store 로 값을 담아준 Provider 로 감싸줬다  -->  즉 store.todo 또는 store.user ... 이런 식으로 가져와 사용하면 되는 것이다
     //==>  const 변수명 = useSelector( ( ) => { } )
 
     //====>  **  새로운 변수 todoList 로 담아줬는데, 이게 전역상태관리가 되고 있는 것인가??  -->  확인해보자 ! ***  ==>  "useSelector" 덕분에 가능한 것인가???
@@ -37,6 +38,7 @@ const Todo = () => {
 
     //-->  추가를 누르면 todoList 가 늘어나는 것을 확인할 수 있다  -->  전역상태관리 잘 되고 있는 것이다
     //==>  dispatch 로 store 에 전달을 하는 것이다 (Provider로 감싸줬기에 전역적으로 쓰이는 상태이다)
+    //==>  store 는 reducer 가 들어있는 중앙 저장소이다 (combineReducers 해준 것을 store 에 넣어줬다)
 
     return <div>
         <button onClick={handleAddTodoDispatch}>추가</button>

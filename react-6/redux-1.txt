@@ -3,8 +3,8 @@
 Redux
 
     상태 관리를 중앙에서 하기 위한 도구 ( 전역 상태 )  -->  전역상태관리 도구이다
-    
-    상태 변경이나 상태와 관련된 모든 것을  "컴포넌트와 분리"  하여 관리하는 것이다 (Context + Reducer)
+
+    상태 변경이나 상태와 관련된 모든 것을  "컴포넌트와 분리"  하여 관리하는 것이다 ( Context + Reducer )
 
     ==>  ContextAPI 와 useReducer 복습 모두 마치면 "redux" 공부 들어가자
     ==>  "react-4" 가서 useReducer 복습하기 ***
@@ -19,12 +19,12 @@ Redux
 
                     ex) store 라는 저장소가 있다 (상태나 상태를 바꾸는 함수들이 저장 됨  -->  즉, reducer 가 저장된다  -->  전달받는 action 에 따라 실행되는 것)
                           -->  이 store 에서만 view 의 데이터가 오는 것이다 (여기서 데이터는 상태가 되는 것이다)
-                          -->  이렇기에 데이터가 어디서 왔는지 찾아볼 필요가 없다  -->  모두 하나의 큰 저장공간인 "store" 에서 오기 때문이다
+                          -->  이렇기에 데이터가 어디서 왔는지 찾아볼 필요가 없다  -->  모두 하나의 큰 저장공간인 "store" 에서 오기 때문이다 (reducer 작성해놓은 곳)
 
                     ex)  -->  나중에 view 에서 사용자의 액션이 일어날 수 있다 (버튼을 클릭하는 등의 이벤트 발생)
                            -->  이렇게 어떤 행위가 일어났을 때, 이 행위를 "store" 에 전달한다  -->  이것을 "dispatch" 라고 한다 (dispatch 가 action 을 전달해준다)
 
-                           ==>  store 에서 view 로 데이터를 뿌리고, view 에서 사용자의 action 에 따라 dispatch 로 store 에 action 을 전달하는 구조이다
+                           ==>  store 에서 view 로 데이터를 뿌리고, view 에서 사용자의 action 에 따라 dispatch 로 store 에 action(객체) 을 전달하는 구조이다
 
                            ==>  데이터가 "단방향" 으로 흐르기 때문에 디버깅하기 굉장히 쉬워진다 (flux pattern)
 
@@ -35,16 +35,18 @@ Redux
         Redux 는 devTools 라는 개발자 도구, 혹은 다양한 추가 라이브러리 등을 제공함으로서 사용에 편리하다
         devTools 는 "로거" 나 "히스토리" 등을 지원한다 ( logger , history )  -->  하지만 현재 redux 는 이것들을 직접 설치해야한다  -->  RTK 에서는 자체적으로 지원한다
 
-        ==>  로거 : (action, prev, next)  -->  콘솔을 찍이 않아도, 이전에 바뀌어야 하는 상태값, 이전에 전달한 상태값 등등 console.log 를 자동으로 찍어준다
+        ==>  로거 : (action, prev, next)  -->  콘솔을 찍지 않아도, 이전에 바뀌어야 하는 상태값, 이전에 전달한 상태값 등등 console.log 를 자동으로 찍어준다
                            그래서 우리가 에러를 추적할 때  -->  action 에 undefined 찍혀있네?  -->  이런 식으로 에러를 찾기가 쉬워진다
 
         ==>  히스토리 : 어디서 에러가 발생했는지 확인하기 위해 "뒤로가기" , "앞으로가기" 등등 을 할 수 있다 (상태가 여러차례 바뀔 때 디버깅 할 때 좋다)
+        
+        ) 정리해보자면, "로거" 는 상태값을 콘솔을 자동으로 찍어주는 도구이고 "히스토리" 는 뒤로가기, 앞으로가기 등의 기능을 할 수 있는 도구이다 (에러 찾기 용이)
     
     ----------------------------------------------------------------------------------------------------------------------------------------------
 
     ) 미들 웨어 :
 
-        백엔드에서 받아온 데이터의 통신을  "전역상태로 중앙관리하기 어려워서 만든 것"  이 "미들웨어" 이다  -->  ( 미들웨어 : 중간 통로 , 중간 장소 )
+        백엔드에서 받아온 데이터의 통신을  "전역상태로 중앙관리하기 어려워서 만든 것"  이  "미들웨어"  이다  -->  ( 미들웨어 : 중간 통로 , 중간 장소 )
         백엔드에서 데이터가 올 때 "미들웨어" 가 가로채서, 이쁘게 바꿔주고 다시 보내주는 것이다 (중간에서 가로채는 것 / 위의 "로거" 도 미들웨어이다)
 
         미들 웨어 : 중간에서 데이터를 가공해주는 것
@@ -82,7 +84,7 @@ Redux
 
     context 와 reducer 만 사용해서 전역상태 관리하면 힘들다  -->  단순히 상태 사용하는 것보다, 사용하기 위해 작성하는 코드가 많다
 
-    mobx, recoil, jotai, zustand 와 같은 더 경량화 되고 쉬운 라이브러리들이 많이 등장하게 된 것이다
+    mobx, recoil, jotai, zustand 와 같은 더 경량화 되고 쉬운 라이브러리들이 많이 등장하게 된 것이다 (전역상태 관리 도구)
 
     ==>  redux 는 최초의 상태관리 라이브러리이기 때문에 좋은 라이브러리가 아니다  ==>  하지만 회사에서 많이 쓴다 (웬만하면 redux 배우자  -->  취업에 필요)
 
@@ -97,7 +99,7 @@ Redux
 
         ==>  구글에 redux 검색해서 공식문서 가서 확인해주자 (라이브러리이기에 공식 문서 확인 필수이다)
 
-        -->  redux 에서 createStore (저장소) import 받아서 만들어주자  ex) import { createStore } from 'redux';  -->  const store = createStore( )
+        -->  redux 에서 createStore (저장소) import 받아서 만들어주자  ex) import { createStore } from "redux"  -->  const store = createStore( )
         -->  Provider 만들어주자 (import 받아야 된다)  ex) import { Provider } from "react-redux"  -->  <Provider> 전역상태 사용될 컴포넌트 </Provider>
 
 
@@ -112,15 +114,15 @@ Redux
 
 ** 경로 이동 : todo.reducer.js , user.reducer.js  -->  root.js
 
-        -->  todo.reducer.js , user.reducer.js 는 useReducer 로 실행시킬 함수가 작성 되어있는 파일이다
+        -->  todo.reducer.js , user.reducer.js 는 useReducer 로 실행시킬 함수가 작성 되어있는 파일이다 (todo, user 라는 이름으로 import 받아와줬다)
 
         -->  root.js 는 todo.reducer.js , user.reducer.js 들을 한곳에 모아주는 파일이다  -->  combineReducers 을 통해 모아주고, export 시켜주는 것이다
                                                                                                                                            -->  그리고 이것을 createStore 에 담아주고, Provider 에 넣는 것이다
                                                                                                                                            -->  즉, 상태나 변화요직을 추가하고 싶다면 combineReducers 에
                                                                                                                                                    key 값만 만들어서 추가해주면 되는 것이다
-                                                                                                                                           -->  Provider 여러개 만들지 않아도 된다
+                                                                                                                                           -->  Provider 여러개 만들지 않아도 된다  ***
 
-        -->  combineReducers 를 import 받은 후에 객체 데이터를 넣어주면 된다  -->  중앙에 저장할 reducer 들을 합치고, ket 로 분류하는 것이다
+        -->  combineReducers 를 import 받은 후에 객체 데이터를 넣어주면 된다  -->  중앙에 저장할 reducer 들을 합치고, key 로 분류하는 것이다
                 (중앙 저장소에 저장하는 것이다) (todo.reducer.js , user.reducer.js 등등 reducer 로 실행시킬 함수들을 모아주는 것이다)
 
         -->  여기서 만든 rootReducer 를 App.js 에 있는 createStore (중앙 저장소이다) 에 넣어주면 된다
@@ -139,7 +141,7 @@ Redux
             4. 앞에서 생성한 중앙 저장소 createStore 에 combineReducers 결합시킨 것 전달  -->  createStore( rootReducer )
 
 
-            ==>  이러면 redux 를 사용할 준비는 끝난 것이다 (이제 컴포넌트 <Todo/> 에 가서 사용해주면 되는 것이다)
+            ==>  이러면 redux 를 사용할 준비는 끝난 것이다 (이제 컴포넌트 <Todo/> 컴포넌트에 가서 사용해주면 되는 것이다)  -->  useSelector 로 받아와서 사용해준다
 
             ==>  나머지 사용법은 useReducer 와 똑같다 (이미 Provider 로 감싸줬기에 useContext 만들듯이 Provider 를 매번 생성하지 않아도 된다)
 
@@ -164,7 +166,7 @@ Redux
 
         ** 경로 이동 : todo.reducer.js  -->  todo.jsx
 
-        -->  useSelector 를 import 받아서 사용해주자
+        -->  useSelector 를 import 받아서 사용해주자  -->  ex) import { useDispatch, useSelector } from "react-redux"
 
         -->  생성해준 todoList (initialState) 에 요소를 추가해주는 요직 (클릭이벤트) 를 만들어보자
 

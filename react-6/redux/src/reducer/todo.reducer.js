@@ -24,7 +24,7 @@ const reducer = (state=initialState, action) => {
             return [...state, action.payload]  //-->  기존의 배열에서 요소를 추가하는 요직이다
 
         default:
-            return state
+            return state //==> default 는 반드시 기본의 state 를 return 해줘야한다 (안그러면 오류뜬다)
     }
 }
 export default reducer

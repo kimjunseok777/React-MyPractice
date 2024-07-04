@@ -1,26 +1,26 @@
 import styled from "styled-components";
 import { flexAlignCenter } from "../../../libs/styles/common";
 import { useRef, useState } from "react";
-import { useTodo } from "../../../store/todo.store";
+import { useDispatch } from "react-redux";
+// import { useTodo } from "../../../store/todo.store";
 
 const OneTodo = ({todo}) => {
 
-    const {todos, setTodos} = useTodo()
+    // const { todos, setTodos } = useTodo()
+    const dispatch = useDispatch()
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     // 삭제 :
     const onPressDeleteTodo = () => {
         const todoId = todo.id
-        const filterTodo = todos.filter((todo) => todo.id !== todoId)
-        setTodos(filterTodo)
+        dispatch(deleteTodo({
+            id: todoId
+        }))
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // 수정 (갱신, Update) 요직 만들어보자
+    // 수정 :
     const [isEditMode, setIsEditMode] = useState(false)
-
     const contentRef = useRef()
 
     const onPressChangeEditMode = () => {
@@ -30,7 +30,6 @@ const OneTodo = ({todo}) => {
     const onPressEdit = () => {
          const todoId = todo.id
          const content = contentRef.current.value
-
         const temp_todos = [...todos]
         let selectTodoIndex = temp_todos.findIndex((todo) => todo.id === todoId)
         temp_todos[selectTodoIndex] = {
@@ -73,7 +72,6 @@ const Wrapper = styled.div`
     background-color: ${({ state, theme }) =>
         state ? theme.colors.Gray[1] : theme.colors.text.white};
 `;
-
 const Header = styled.div`
     border-bottom: 1px dotted #999;
     ${flexAlignCenter};
@@ -81,12 +79,10 @@ const Header = styled.div`
     padding: 8px 16px;
     height: 48px;
 `;
-
 const Content = styled.div`
     padding: 16px;
     text-decoration: ${({ state }) => (state ? "line-through" : "none")};
 `;
-
 const S = {
     Wrapper,
     Header,

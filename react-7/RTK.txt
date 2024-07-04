@@ -5,7 +5,7 @@ RTK : redux 의 가장 최신 버전이다
     ) redux 를 사용하는 이유 3가지 :
 
         1. 전역 상태 관리
-        2. 단방향 데이터 흐름을 통한 상태 중앙 관리  -->  에러 추적 용이
+        2. 단방향 데이터 흐름을 통한 상태 중앙 관리  -->  에러 추적 용이 (flux pattern)
         3. 다양한 플러그인 및 미들웨어 지원
 
 
@@ -21,12 +21,12 @@ RTK : redux 의 가장 최신 버전이다
 
         ==>  RTK 는 플러그인들을 자체 지원하고 있다 (middleWare, devTools, logger ... 등등 따로 설치 안해도 된다  -->  rtk 만 설치하면 된다)
 
-        ==>  RTK 는 작성하기 위한 코드도 redux 보다 조금 줄어든다
+        ==>  RTK 는 작성하기 위한 코드도 redux 보다는 조금 줄어든다
 
 
     ) 현재 실무에서 가장 많이 사용하는 전역상태 관리 도구 (1~4 순위이다)
 
-        1. redux + saga / thunk  , rtk (rtk 는 자체적으로 saga 와 thunk 를 지원하고 있다  -->  따로 설치 안해도 된다)
+        1. redux + saga / thunk  , rtk (rtk 는 기본 redux 와 다르게 자체적으로 saga 와 thunk 를 지원하고 있다  -->  따로 설치 안해도 된다)
 
         2. mobx
 
@@ -41,7 +41,7 @@ RTK : redux 의 가장 최신 버전이다
 
         ==>  로켓펀치  -->  채용에서 경력을 신입으로 하고, react 를 검색후 최신순으로 해서 공고들을 확인해보자
 
-        ==>  여기서 프론트엔드 스택을 확인해보면 어떤 걸 공부해야하는지 확인할 수
+        ==>  여기서 프론트엔드 스택을 확인해보면 어떤 걸 공부해야하는지 확인할 수 있다
 
                 ex) TypeScript , Webpack , React , Next.js , Recoil , Vanila Extract , Emotion , React Query ... 등등 확인할 수 있다
 
@@ -50,7 +50,7 @@ RTK : redux 의 가장 최신 버전이다
 
                     -->  Webpack 은 신경 안써도 된다
 
-                    ==>  채용 공고를 확인해보면 "Next.js" 는 거의 필요한 것을 확인할 수 있다  -->  이거 공부 무조건 하는 것이 좋다 ***
+                    ==>  채용 공고를 확인해보면 "Next.js" 는 거의 필요한 것을 확인할 수 있다  -->  Next.js 공부 무조건 하는 것이 좋다 ***
 
                     ==>  채용 공고와 회사에 대한 설명이 잘 적혀있어서, 개발자를 굉장히 우대해주는 회사에 들어가는 것이 좋다 ***
 
@@ -66,16 +66,17 @@ RTK : redux 의 가장 최신 버전이다
 
                 -->  redux, rtk, mobx 를 사용하는 회사들이 많다
 
-                -->  최신 거인 jotai  같은 것을 사용하는 회사들은 만 1,2 년이 안된 스타트업일 가능성이 높다 (최근에 만들어진 회사, 스타트업)
+                -->  최신 도구인 jotai  같은 것을 사용하는 회사들은 만 1,2 년이 안된 스타트업일 가능성이 높다 (최근에 만들어진 회사, 스타트업)
 
                 -->  보통 10년 정도 된 큰 기업이나 규모가 큰 회사일 수록 redux 나 mobx 를 사용할 가능성이 높다
-
 
 
 ===================================================================================================
 
 
-이번 RTK (Redux Tool Kit) 수업은 전에 만든 투두리스트의 전역상태 관리를 ContexdtAPI 에서 RTK 로 바꿔주는 식으로 진행한다
+이번 RTK (Redux Tool Kit) 수업은 전에 만든 투두리스트의 전역상태 관리를  "ContexdtAPI"  에서  "RTK"  로 바꿔주는 식으로 진행한다
+
+        -->  전역상태 관리 도구를 바꿔주는 작업이다
 
 
 ===================================================================================================
@@ -85,7 +86,7 @@ RTK : redux 의 가장 최신 버전이다
 
 ** 경로 이동 : App.js
 
-        ==>  @reduxjs/toolkit
+        ==>  npm i @reduxjs/toolkit
         ==>  npm i react-redux  -->  공식문서 확인하고 이거 2개 설치해주자
 
         -->  전역상태관리를 이제 contextAPI 로 하지 않고 RTK 로 할 것이기 때문에 TodoProvider 만들어준 전역상태 관리 지워주자
@@ -98,16 +99,41 @@ RTK : redux 의 가장 최신 버전이다
 
 ** 경로 이동 : App.js  -->  store.js
 
-        -->  공식문서 보고 configureStore 만들어주자  -->  만들었으면 Provider 에 store 로 넣어주자
+        -->  공식문서 보고 configureStore 만들어주자  -->  ex) import {configureStore} from "@reduxjs/toolkit"  -->  export const store = configureStore({ ... })
+        -->  만들었으면 Provider 에 store 의 값으로 넣어주자  -->  ex) <Provider store={store}>
 
 
 ** 경로 이동 : store.js  -->  todo.slice.js
 
-        -->  createSlice 로 상태변화 분기처리 요직 만들어주자 (switch문 같은거 쓰지 않아도 된다)
+        ==>  contextAPI 로 만든 todo.store.js 삭제시켜주고, "todo.slice.js" 만들어준 것이다
+
+        -->  createSlice 로 상태변화 분기처리 요직 만들어주자 (switch문 같은거 쓰지 않아도 된다)  -->  ex) import { createSlice } from "@reduxjs/toolkit"
 
         -->  createSlice 모두 작성하고 action , reducer 모두 export 해줬으면 store.js 에 가서 내가 등록하고 싶은 key 로 등록해주면 된다
 
 
 ** 경로 이동 : todo.slice.js  -->  store.js
 
-        -->  
+        -->  내가 원하는대로, 겹치지만 않게 key 이름을 정해서 reducer 를 import 받아서 등록시켜주면 된다
+        -->  ex) import todoReducer from "./todo.slice"  -->  reducer: { todo: todoReducer }
+
+
+===================================================================================================
+
+
+** 경로 이동 : store.js  -->  todoList.jsx
+
+        -->  이제 contextAPI 로 전역상태 관리하던 부분 모두 주석처리 해주고, RTK 전역상태 관리 도구로 바꿔줄 것이다
+
+
+        ** 경로 이동 : todoList.jsx  -->  oneTodo.jsx
+
+                -->  
+
+===================================================================================================
+
+
+** 경로 이동 : 
+
+
+===================================================================================================

@@ -8,6 +8,8 @@
         -->  npm i yup
         -->  npm i @hookform/resolvers  -->  yup 으로 만든 스키마 (제약조건) 를 "yupResolver" 에 등록하기 위해 설치
 
+        ==>  yupResolver 는 import 를 "@hookform/resolvers" 에서 받는 것이 아닌 "@hookform/resolvers/yup" 에서 import 받는다
+
         ==>  yup 은 위 두개 다 설치해줘야 된다
 
         ==>  yup 을 사용하지 않고 RHF 만 사용하면 "react-5" 에서 했던 것처럼 태그에다가 register 를 달아준 후에 정규표현식 또는 검사요직 등을  하나하나 설정해줘야 했었다

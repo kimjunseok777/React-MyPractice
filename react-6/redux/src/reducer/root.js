@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import todo from "./todo.reducer"  //-->  export default reducer  -->  todo 로 import 받아준 것이다
 import user from "./user.reducer"
-// import 한 이름이 key 값이 되기 때문에 중요하다 (todo, user)
+// import 한 이름이 key 값이 되기 때문에 중요하다 ( todo, user )
 
 //-->  combineReducers 안에 앞에서 만든 useReducer 로 실행시킬 함수들을 넣어준 것이다
 // 중앙에 저장할 reducer 를 합치고 key 로 분류하기 위한 코드이다
