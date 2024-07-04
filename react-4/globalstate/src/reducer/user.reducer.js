@@ -1,11 +1,12 @@
 
 // 그냥 이름이 userReducer 인 흔한 일반 함수를 만들어준 것이다 (이름은 마음대로 작성해줘도 됨  -->  이 파일 보면 따로 import 받은 것은 없다)
-// (일반함수 처럼 보이지만, useReducer 로 사용할 함수의 "매개변수" 순서는 중요하니 익혀두자  -->  state , action)
+// (일반함수 처럼 보이지만, useReducer 로 사용할 함수의 "매개변수" 순서는 중요하니 익혀두자  -->  state , action)  -->  action 은 dispatch 로 전달받는 객체이다
 
 //-->  useReducer 로 실행시킬 요직은 이렇게 함수 형태로 만들어줘야 한다
 //-->  매개변수 이름은 상관 없지만, 순서는 중요하다  -->  ( state , action )  -->  첫번째가 상태인 state, 두번째가 객체로 전달되는 action (dispatch 로 전달된다)
 //-->  action 은 전달받는 객체이다  /  state 는 상태이다
 //-->  상태는 useReducer 로 선언해준 상태가 되는 것이다 (userList.jsx 에서 확인이 가능하다)
+
 export const userReducer = (state, action) => {
     //==>  함수 이름 다르게 생성해줘도 된다  -->  그냥 usdReducer 로 생성해준 것 (이름 userList.jsx 에서 만들어준 것과 헷갈리면 바꿔줘도 된다)
     //==>  여기서 전달받는 state 는 "users" 인 상태배열이고, action은 "dispatch" 로 전달받는 객체이다

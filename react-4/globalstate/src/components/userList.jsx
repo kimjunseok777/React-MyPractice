@@ -12,7 +12,7 @@ const UserList = () => {
         id: 1,
         name: "김사과"
     }])
-    // const [ 상태명 , action 전달 함수 ] = useReducer( action 전달할 함수 , 상태의 기본값 )
+    // const [ 상태명 , action 전달 함수 - 즉, dispatch 적어주면 된다 ] = useReducer( action 전달할 함수 , 상태의 기본값 )
 
 
     const handlePressAddUser = () => {
@@ -21,7 +21,7 @@ const UserList = () => {
         // 얘는 다른 거 다 필요없다, 그냥 dispatch 만 넣어주면 된다 (전달할 action 객체 넣어주면 된다)
         //==>  상태 변화 로직을 앞에서 만든 함수인 useReducer 에 이미 다 작성해놨기 때문에, 어떤 상태변화 로직을 어떤 데이터로 실행시킬지 그 정보만 전달해주면 되는 것이다
 
-        //--> dispatch 의 괄호 안에 action, 즉 내가 전달하고 싶은 객체를 넣으면 된다
+        //--> dispatch 의 괄호 안에 전달할 action, 즉 내가 전달하고 싶은 객체를 넣으면 된다
         //--> type , payload 전달하면 된다  -->  type 으로 "추가" or "삭제" 중 어떤 요직 사용할지 정해지고, payload 는 사용될 내용물이다 (상태변화에 사용될 데이터)
         //--> payload 안에 id, name 이 있다
         dispatch({
@@ -33,7 +33,8 @@ const UserList = () => {
             }
         })
         //-->  dispatch 가 이 객체를 앞에서 생성했던 userReducer 함수에 action 으로 전달을 해주는 것이다
-        //-->  dispatch 는 "전달 매개체" 라고 생각하면 된다  -->  이 친구가 userReducer 로 action 이라는 이름으로 객체를 전달해주는 것이다 
+        //-->  dispatch 는 "전달 매개체" 라고 생각하면 된다  -->  이 친구가 userReducer 로 action 이라는 이름으로 객체를 전달해주는 것이다
+        //-->  action 에서 객체 접근법으로 사용하면 되는 것이다
 
         //==>  dispatch 괄호 안에 보이는 것처럼, 이 객체(action)만 전달하면 "어디에서든" 추가되는 요직이나, 삭제되는 요직을 실행시킬 수 있는 것이다
 

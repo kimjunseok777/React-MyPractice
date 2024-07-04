@@ -8,7 +8,7 @@ const FormInput = ({label, size, containerStyle, error, register, name, ...props
     return <>
         <S.InputBox size={size}>
             <S.InputLabel>{label}</S.InputLabel>
-            <S.Input size={size} name={name} {...props} {...register?.(name)}/> {/*--> register 가 있다면 name 이름으로 등록하는 것이다  -->  재사용하기 위함*/}
+            <S.Input size={size} name={name} {...props} {...register?.(name)}/> {/*--> register 가 있다면 name 이름으로 등록하는 것이다  -->  "재사용" 하기 위함*/}
             {/*--> register 전달 받은 것을 확인 가능하다  -->  name 속성으로 등록해준 것을 확인할 수 있다 ( email , password ) */}
         </S.InputBox>
                 <p style={{
