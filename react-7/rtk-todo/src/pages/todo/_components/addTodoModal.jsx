@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../../store/todo.slice";
+import { addTodo } from "../../../store/todo.slice"; //-->  dispatch 안에서 사용해주는 상태변화 함수를 import 받은 것이다
 // import { useTodo } from "../../../store/todo.store";
 
 
@@ -21,7 +21,9 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
             state: false
         }
 
-        dispatch(addTodo(newTodo))
+        dispatch(addTodo(newTodo)) //-->  여기서 newTodo 는 action 객체 안의 payload 객체로 전달된다
+        //-->  즉, newTodo 는 action 이라는 객체인 { payload : { id:~, title:~, content:~, state:~ } } 가 되는 것이다
+
         setIsOpenAddTodoModal(false)
     }
 

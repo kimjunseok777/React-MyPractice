@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { flexAlignCenter } from "../../../libs/styles/common";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodo, updateTodo } from "../../../store/todo.slice";
+import { deleteTodo, updateTodo } from "../../../store/todo.slice"; //-->  상태를 변경시키기 위해 import 받아온 것들이다 (dispatch 사용할 때 쓴다)
 // import { useTodo } from "../../../store/todo.store";
 
 const OneTodo = ({todo}) => {
 
     // const { todos, setTodos } = useTodo()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() //--> "react-redux" 에서 import 받은 것이다
+    // 부모에서 props 로 전달받은 todo 로 상태변화 요직을 모두 해결하기 때문에, 따로 useSelector 사용하지 않은 걸 확인할 수 있다
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
     // 삭제 :
@@ -17,8 +18,9 @@ const OneTodo = ({todo}) => {
 
         // 원래 쓰던 전역상태요직 삭제해주고, 객체를 전달하는 dispatch 넣어준 것이다
         dispatch(deleteTodo({
-            id: todoId //-->  "action.payload.id" 했다면 이렇게 하면 된다
-            // 이게 아니라 "action.payload" 이렇게 했다면  -->  deleteTodo(todoId) 이렇게 객체 전달하면 된다
+            id: todoId //-->  "action.payload.id" 했다면 이렇게 하면 된다  -->  따로 todoId 선언해주지 않고, 여기다가 todo.id 적어도 된다
+            // 이게 아니라 slice 만들 때 "action.payload" 이렇게 했다면  -->  deleteTodo(todoId) 이렇게 객체 전달하면 된다
+            //==>  상태변화 함수 안에 있는 내용물은 action 이라는 이름의 객체로 전달되는 것이다
         }))
     }
 
