@@ -21,7 +21,7 @@ const reducer = (state=initialState, action) => {
     switch(action.type) {
 
         case "ADD_TODO":
-            return [...state, action.payload]  //-->  기존의 배열에서 요소를 추가하는 요직이다
+            return [...state, action.payload]  //-->  기존의 배열에서 요소를 추가하는 요직이다  -->  payload: { id : ? , title : ? , content : ? } 이러한 객체가 담긴 데이터가 오는 것이다
 
         default:
             return state //==> default 는 반드시 기본의 state 를 return 해줘야한다 (안그러면 오류뜬다)

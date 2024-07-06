@@ -36,7 +36,7 @@ Redux
         devTools 는 "로거" 나 "히스토리" 등을 지원한다 ( logger , history )  -->  하지만 현재 redux 는 이것들을 직접 설치해야한다  -->  RTK 에서는 자체적으로 지원한다
 
         ==>  로거 : (action, prev, next)  -->  콘솔을 찍지 않아도, 이전에 바뀌어야 하는 상태값, 이전에 전달한 상태값 등등 console.log 를 자동으로 찍어준다
-                           그래서 우리가 에러를 추적할 때  -->  action 에 undefined 찍혀있네?  -->  이런 식으로 에러를 찾기가 쉬워진다
+                           그래서 우리가 에러를 추적할 때  -->  action 에 undefined 찍혀있네?  -->  이런 식으로 에러를 찾기가 쉬워진다 (로거는 미들웨어이다)
 
         ==>  히스토리 : 어디서 에러가 발생했는지 확인하기 위해 "뒤로가기" , "앞으로가기" 등등 을 할 수 있다 (상태가 여러차례 바뀔 때 디버깅 할 때 좋다)
         
@@ -125,7 +125,7 @@ Redux
         -->  combineReducers 를 import 받은 후에 객체 데이터를 넣어주면 된다  -->  중앙에 저장할 reducer 들을 합치고, key 로 분류하는 것이다
                 (중앙 저장소에 저장하는 것이다) (todo.reducer.js , user.reducer.js 등등 reducer 로 실행시킬 함수들을 모아주는 것이다)
 
-        -->  여기서 만든 rootReducer 를 App.js 에 있는 createStore (중앙 저장소이다) 에 넣어주면 된다
+        -->  여기서 만든 rootReducer 를 App.js 에 있는 createStore (중앙 저장소이다) 에 넣어주면 된다  -->  ex) createStore( rootReducer )
 
 
         ** 경로 이동 : root.js  -->  App.js  (앞에서 만들어준 createStore 에 데이터 넣어주자)  -->  createStore( rootReducer )
@@ -136,7 +136,7 @@ Redux
 
             2. useReducer 생성  -->  todo.reducer.js , user.reducer.js ... 등등
 
-            3. combineReducers 로 생성한 useReducer 함수들 저장  -->  combineReducers({todo, user})  -->  (합칠 reducer 를 넣어준 것이다)
+            3. combineReducers 로 생성한 useReducer 함수들 저장  -->  combineReducers({todo, user})  -->  (합칠 reducer 를 객체의 key 값으로 넣어주면 된다)
 
             4. 앞에서 생성한 중앙 저장소 createStore 에 combineReducers 결합시킨 것 전달  -->  createStore( rootReducer )
 
@@ -149,9 +149,9 @@ Redux
                      <TodoProvider/> 뿐만 아니라 <UserProvider/> 하나 더 만들어서 감싸줬어야 됐을 것이다 (이럴 필요가 없다 이제)
 
                      -->  이렇게 하지 않아도, 우리가 rootReducer 안에 등록해줬기 때문에 Provider 를 매번 생성해주지 않아도 되는 것이다
-                     -->  rootReducer 안의 combineReducers 에 등록만 해주면 되는 것이다
+                     -->  rootReducer 안의 combineReducers 에 등록만 해주면 되는 것이다 (createStore 가 이 rootReducer 를 담고 있기 때문)
 
-            ==>  전역 상태 관리는 이미 이뤄진 것이다  -->  action 에다가 switch 의 값만 넣어주면 끝나는 것이다
+            ==>  전역 상태 관리는 이미 이뤄진 것이다  -->  action 에다가 switch 의 값만 넣어주면 끝나는 것이다 (이제 dispatch 로 객체만 전달해주면 사용할 수 있다)
 
             ) 과제 : deleteTodo, updateTodo 만들어 보기  -->  addTodo 는 지금 만들어볼 것이다
 
@@ -168,9 +168,15 @@ Redux
 
         -->  useSelector 를 import 받아서 사용해주자  -->  ex) import { useDispatch, useSelector } from "react-redux"
 
+        -->  useSelector 는 콜백함수로 사용해주면 된다  -->  ex) const todoList = useSelector((store) => store.todo)
+
         -->  생성해준 todoList (initialState) 에 요소를 추가해주는 요직 (클릭이벤트) 를 만들어보자
 
         ) 과제 : 추가는 만들었다  -->  "삭제" 와 "수정" 요직도 만들어보자 ***
+
+        )==>  ** 중요 : redux 상태를 바꾸는 것은 return 된 값이다  ==>  즉, redux 에서 switch 문의 return 된 값으로 setState 를 해서 상태를 바꾼다고 이해하면 된다
+
+        ) return 된 값으로 상태변경 때 쓰이는 set 함수를 사용하는 것이다
 
 
 ===================================================================================================

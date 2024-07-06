@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
-import { useTodo } from "../../../store/todo.store";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../../../store/todo.slice";
+// import { useTodo } from "../../../store/todo.store";
 
 
 const AddTodoModal = ({setIsOpenAddTodoModal}) => {
     
-    const {todos, setTodos} = useTodo()
+    // const {todos, setTodos} = useTodo()
+    const dispatch = useDispatch()
 
     const onPressAddTodo = (event) => {
         event.preventDefault()
@@ -18,7 +21,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
             state: false
         }
 
-        setTodos([...todos, newTodo])
+        dispatch(addTodo(newTodo))
         setIsOpenAddTodoModal(false)
     }
 
@@ -28,7 +31,6 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
                 <S.Title>
                     <h1>ADD TODO LIST</h1>
                     <button type='button' onClick={() => setIsOpenAddTodoModal(false)}> x </button>
-                    {/*이 버튼은 submit이 되면 안되기에 type 을 button 이라고 명시해준 것이다*/}
                 </S.Title>
                 <S.Content>
                     <input name="title" placeholder="제목을 입력해주세요"/>
@@ -55,7 +57,6 @@ const Modal = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 `;
-
 const Form = styled.form`
     width: 480px;
     position: absolute;
@@ -67,7 +68,6 @@ const Form = styled.form`
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 32px;
 `;
-
 const Title = styled.div`
     font-size: 24px;
     ${flexAlignCenter};
@@ -80,13 +80,11 @@ const Title = styled.div`
         }
   }
 `;
-
 const Content = styled.div`
     ${flexCenter};
     margin-top: 16px;
     margin-bottom: 16px;
     flex-direction: column;
-
     & > input {
         width: 100%;
         height: 40px;
@@ -96,7 +94,6 @@ const Content = styled.div`
         padding: 0 16px;
         margin-bottom: 16px;
     }
-
     & > textarea {
         width: 100%;
         height: 200px;
@@ -106,7 +103,6 @@ const Content = styled.div`
         padding: 16px;
     }
 `;
-
 const S = {
     Modal,
     Form,

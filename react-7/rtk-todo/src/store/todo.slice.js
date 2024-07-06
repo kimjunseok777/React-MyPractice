@@ -7,7 +7,14 @@ const initialState = {
             id: 1,
             title: "title-1",
             content: "content-1",
-        }
+            state: true
+        },
+        {
+            id: 2,
+            title: "title-2",
+            content: "content-2",
+            state: false
+        },
     ]
 }
 
@@ -24,7 +31,7 @@ export const todoSlice = createSlice({
 
         //-->  공식문서에서는 increment, decrement ... 등등 으로 되어있는데, 이 부분이 action.type 이라고 보면 된다 (이 type 을 정해주면 자동이로 이뤄지는 것이다)
         addTodo: (state, action) => {  //-->  매개변수로 "상태" 와 action 이라는 이름의 "객체" 를 받는다
-            state.todo.unshift(action.payload)  //-->  이렇게 불변성을 지키지 않고도 상태변화를 시킬 수 있다  -->  ex) [...state] 같은 복사본 생성하는 거 안해도 된다
+            state.todo.push(action.payload)  //-->  이렇게 불변성을 지키지 않고도 상태변화를 시킬 수 있다  -->  ex) [...state] 같은 복사본 생성하는 거 안해도 된다
             //-->  initialState 객체 안에 todo 라는 배열이 들어가 있기 때문에, state.todo 이렇게 접근해줘야 되는 것이다
         },
         deleteTodo: (state, action) => {

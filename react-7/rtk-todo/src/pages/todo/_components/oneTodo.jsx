@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { flexAlignCenter } from "../../../libs/styles/common";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import { deleteTodo, updateTodo } from "../../../store/todo.slice";
 // import { useTodo } from "../../../store/todo.store";
 
 const OneTodo = ({todo}) => {
@@ -13,8 +14,11 @@ const OneTodo = ({todo}) => {
     // 삭제 :
     const onPressDeleteTodo = () => {
         const todoId = todo.id
+
+        // 원래 쓰던 전역상태요직 삭제해주고, 객체를 전달하는 dispatch 넣어준 것이다
         dispatch(deleteTodo({
-            id: todoId
+            id: todoId //-->  "action.payload.id" 했다면 이렇게 하면 된다
+            // 이게 아니라 "action.payload" 이렇게 했다면  -->  deleteTodo(todoId) 이렇게 객체 전달하면 된다
         }))
     }
 
@@ -30,14 +34,12 @@ const OneTodo = ({todo}) => {
     const onPressEdit = () => {
          const todoId = todo.id
          const content = contentRef.current.value
-        const temp_todos = [...todos]
-        let selectTodoIndex = temp_todos.findIndex((todo) => todo.id === todoId)
-        temp_todos[selectTodoIndex] = {
-            ...temp_todos[selectTodoIndex],
-            content
-        }
 
-        setTodos(temp_todos)
+        dispatch(updateTodo({
+            id: todoId,
+            content
+        }))
+
         setIsEditMode(false)
     }
 
