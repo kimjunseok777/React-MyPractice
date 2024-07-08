@@ -17,6 +17,7 @@ const OneTodo = ({todo}) => {
         const todoId = todo.id
 
         // 원래 쓰던 전역상태요직 삭제해주고, 객체를 전달하는 dispatch 넣어준 것이다
+        // 이렇게 앞에서 만들었던 reducer 의 key 값인 deleteTodo 이것만 import 받아서 사용하면 되는 것이다 (그래서 여기서는 따로 useSelector 사용하지 않은 것이다)
         dispatch(deleteTodo({
             id: todoId //-->  "action.payload.id" 했다면 이렇게 하면 된다  -->  따로 todoId 선언해주지 않고, 여기다가 todo.id 적어도 된다
             // 이게 아니라 slice 만들 때 "action.payload" 이렇게 했다면  -->  deleteTodo(todoId) 이렇게 객체 전달하면 된다
