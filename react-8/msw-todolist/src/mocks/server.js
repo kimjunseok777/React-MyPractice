@@ -8,3 +8,5 @@ import { setupWorker } from 'msw/browser' //--> 위에거 "msw/node" 로 import 
 export const server = setupWorker(...handlers)
 // setupWorker : 브라우저 환경에서 네트워크 요청을 모킹하는 데 사용된다, 이를 통해 개발자는 실제 서버와의 통신 없이도 네트워크 요청을 테스트하고 디버깅할 수 있다
 // 이 server 를 최상위 컴포넌트에 App.js 에서 import 받아와서 start() 로 실행시켜준 것이다
+
+//==>  여기서 export 한 server 는 최상위 컴폰넌트인 App.js 에서 import 받아서 server.start() 로 사용된다
