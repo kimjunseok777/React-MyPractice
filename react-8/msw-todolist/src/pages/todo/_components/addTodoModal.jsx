@@ -8,22 +8,22 @@ import { addTodo } from "../../../store/todo.slice"; //-->  dispatch 안에서 �
 
 const AddTodoModal = ({setIsOpenAddTodoModal}) => {
     
-    // const {todos, setTodos} = useTodo()
     const dispatch = useDispatch()
 
+    /**
+     * @description : 이 함수는 투두를 추가하는 함수입니다
+     * @param {*} event 
+     * event : FormEvent 입니다
+     */
     const onPressAddTodo = (event) => {
         event.preventDefault()
-
         const newTodo = {
             id: Math.floor(Math.random() * 1000000),
             title: event.target.title.value,
             content: event.target.content.value,
             state: false
         }
-
-        dispatch(addTodo(newTodo)) //-->  여기서 newTodo 는 action 객체 안의 payload 객체로 전달된다
-        //-->  즉, newTodo 는 action 이라는 객체인 { payload : { id:~, title:~, content:~, state:~ } } 가 되는 것이다
-
+        dispatch(addTodo(newTodo))
         setIsOpenAddTodoModal(false)
     }
 
