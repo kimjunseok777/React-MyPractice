@@ -10,4 +10,20 @@ export const handlers = [...Object.values(UserApi)]
 //-->  이렇게 하면 handlers 에 자동으로 등록 된 것이기에 사용하면 된다
 
 //==>  UserApi : 백엔드 주소와, 조건에 따라 백엔드에서 전달해주는 데이터가 들어있다
-//==>  여기서 export 해준 백엔드주소와 목데이터가 있는 handlers 는 server.js 의 "setupWorker" 에서 사용된다
+//==>  여기서 export 해준 handlers (--> 백엔드주소와 목데이터가 있다) 는 server.js 의 "setupWorker" 에서 사용된다
+
+
+/*
+
+    export const handlers = [
+        http.post("/todo/3", () => {
+            return HttpResponse.json({
+                id: 1,
+                title: "title-1",
+                content: "content-1",
+                state: false
+            })
+        })
+    ]
+
+*/

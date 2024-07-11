@@ -1,12 +1,13 @@
 import { http, HttpResponse } from "msw";
 
 
+// 메소드만 다르게 하면 백엔드 주소는 똑같이 설정해줘도 되는 건가?
 //------------------------------------------------------------------------------------------------------------------------------
 // 작성 :
 
-// 투두를 추가한다면 백엔드에세 어떤 데이터를 줘야할까?  -->  title, content 가 포함된 객체를 줘야한다  -->  즉, input 데이터를 줘야한다
+// 투두를 추가한다면 백엔드에서 어떤 데이터를 줘야할까?  -->  title, content 가 포함된 객체를 줘야한다  -->  즉, input 데이터를 줘야한다
 export const addTodo = http.post("/api/todo", async ({ request }) => {
-    // 백엔드에게 input 데이터를 줘야함  -->  title, content  -->  객체로 전달하기에 body 에 실어서 보내면 좋다
+    // 백엔드에게 input 에서 value 데이터를 줘야함  -->  title, content  -->  객체로 전달하기에 body 에 실어서 보내면 좋다
     //-->  백엔드에게 요청할 때 title 과 content 를 body 에 실어서 요청하는 것이다
     const { title, content } = await request.json()
     
