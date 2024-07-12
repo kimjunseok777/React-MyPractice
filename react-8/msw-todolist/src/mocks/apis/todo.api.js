@@ -60,7 +60,34 @@ export const getTodos = http.get("/api/todo", async () => {
 
 // export const updateTodo = http.patch()
 
+/*
+    프론트엔드 개발자 입장 :
+        업데이트를 하기 위해 프론트엔드가 request 에 실어서 보내야하는 input 의 값은 무엇일까?
+        -->  id , 변경된 값
+
+    백엔드 개발자 입장 :
+        id 를 어떻게 받아야할까?  -->  주소에도 querystring, params, body 가 있다
+        -->  id 는 querystring 으로 받아오자 (user.api.js 에서 했었으니 참고하자  -->  request.url)
+        -->  변경된 값은 body 에 실어서 가져오자  -->  request.json()
+        -->  return { id , 변경된 값 }
+*/
+
 //------------------------------------------------------------------------------------------------------------------------------
 // 삭제 :
 
 // export const deleteTodo = http.delete()
+
+/*
+    프론트엔드 개발자 입장 :
+        delete 는 보내야하는 데이터는 id 뿐이다
+        -->  querystring 으로 보낼지, params 으로 보낼지는 백엔드 마음이다
+
+    백엔드 개발자 입장 :
+        id 는 params 로 받으면 된다
+        -->  메소드는 delete , 주소는 "/api/todo/:todoId" 이런 식으로 해주면 된다
+
+    ex)
+    export const deleteTodo = http.delete("/api/todo/:todoId")  -->  이런식으로 하면 된다
+
+    return { id }
+*/

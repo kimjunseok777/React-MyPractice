@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../../store/todo.slice"; //-->  dispatch 안에서 사용해주는 상태변화 함수를 import 받은 것이다
+import { useEffect } from "react";
 // import { useTodo } from "../../../store/todo.store";
 
 
@@ -10,22 +11,66 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
     
     const dispatch = useDispatch()
 
+    const state = useSelector((store) => store.todo.addTodoState)
+    console.log(state) //-->  로딩, 성공, 실패 등등 확인할 수 있다
+
+    //------------------------------------------------------------------------------------------------
+    // msw 수업 :
     /**
      * @description : 이 함수는 투두를 추가하는 함수입니다
      * @param {*} event 
      * event : FormEvent 입니다
      */
-    const onPressAddTodo = (event) => {
+    const onPressAddTodo = async (event) => {
         event.preventDefault()
-        const newTodo = {
-            id: Math.floor(Math.random() * 1000000),
-            title: event.target.title.value,
-            content: event.target.content.value,
-            state: false
-        }
-        dispatch(addTodo(newTodo))
-        setIsOpenAddTodoModal(false)
+
+        //-----------------------------------------------------
+        // redux thunk :
+        dispatch(
+            addTodo({
+                title: event.target.title.value,
+                content: event.target.content.value,
+            })
+        )
+        //-->  백엔드에 요청하는 것은 이미 thunk 에다가 다 작성을 해놨기에, 이렇게만 데이터를 보내면 끝난다
+        //-----------------------------------------------------
+
+        /*
+        // redux thunk 사용하면 필요없기에 주석처리 해준 것 :
+
+            const result = await fetch("/api/todo", {
+                method: "post",
+                body: JSON.stringify({
+                    title: event.target.title.value,
+                    content: event.target.content.value,
+                })
+            })
+            const response = await result.json()
+            console.log(response) //--> 또 그냥 response 가 아니라 response.data 일 수도 있기에 콘솔로그 찍어서 확인해준 것
+            dispatch(addTodo(response.data))
+
+        //--> "/api/todo" 의 post 에서 키가 data 인 객체 안에 보냈기에, data 로 한번 더 접근해줘야 되는 것이다  -->  todo.api.js 확인해보자
+        //==>  logger 안에도 데이터가 잘 전달됐는지 확인해보면 좋다
+        */
+
+        // setIsOpenAddTodoModal(false) //==>  이것도 여기 있을 필요가 없다  -->  아래 useEffect 로 바꿔주자
     }
+    useEffect(() => {
+        //--> 여기서 state 는 상단에 useSelector 로 불러온 전역상태값이다
+        if(state.error) {
+            return alert(state.error.message) //-->  만약 에러가 있다면, 이런식으로 하면 된다
+        }
+        if(state.done) {
+            //-->  요청이 정말 끝났다면 addTodo 모달창을 닫는 것이다 (더 확실하게 하기 위해 useEffect 로 만들어준 것)
+            //-->  추가가 완벽히 이루어졌을 때 모달창을 닫을 수 있게끔 바꿔준 것
+            setIsOpenAddTodoModal(false)
+        }
+    }, [setIsOpenAddTodoModal, state])
+
+    //------------------------------------------------------------------------------------------------
+
+    // if(state.loading) return <div>Loading...</div>
+    //-->  로딩중인 것을 아예 이런 식으로 만들 수도 있다
 
     return (
         <S.Modal>
@@ -41,9 +86,11 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
                 <TDButton 
                     variant={'primary'}                
                     size={'full'}
+                    disabled={state.loading}//--> 로딩이 true 일 때는 버튼 눌러지면 안되기에 설정해준 것
                 >
-                    ADD
+                    {state.loading ? "Loading..." : "ADD"}
                 </TDButton>
+                {state.error && state.error.message}
             </S.Form>
         </S.Modal>
     )

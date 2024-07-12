@@ -10,6 +10,8 @@ const TodoList = () => {
     const dispatch = useDispatch()
 
     //---------------------------------------------------------------------
+    // msw 수업 :
+
     // useEffect 는 async 를 붙여줄 수가 없다  -->  then 을 써주는 방법과, 밖에서 async 붙여준 함수를 만들어주는 방법이 있다
     //--> useEffect( async () => {} )  -->  이렇게 사용할 수 없다
 
@@ -17,6 +19,7 @@ const TodoList = () => {
     useEffect(() => {
         // fetch("/api/todo") //--> fetch 는 비동기이기에 이렇게 쓰면 안된다  -->  async 나 then 써야한다
 
+        //-----------------------------------------------------------------------------------------------------------------
         // then 사용 :
         // fetch("/api/todo").then((res) => res.json()).then((data) => dispatch(getTodos(data)))
 
