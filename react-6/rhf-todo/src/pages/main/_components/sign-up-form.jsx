@@ -34,9 +34,9 @@ const SIGNFORM_ARRAY = [
 //-->  npm i @hookform/resolvers/yup  -->  설치해줘야 한다
 //--------------------------------------------------------------------------------------------------------------
 const signFormSchema = yup.object().shape({
-    email: yup.string().email('이메일 양식이 아닙니다').required(),
-    password: yup.string().min(8, '비밀번호는 8글자 이상 입력해주세요').required(),
-    'password-confirm': yup.string().oneOf([yup.ref("password")], "비밀번호 확인이 일치하지 않습니다").required()
+    email: yup.string().email('이메일 양식이 아닙니다').required(""),
+    password: yup.string().min(8, '비밀번호는 8글자 이상 입력해주세요').required(""),
+    'password-confirm': yup.string().oneOf([yup.ref("password")], "비밀번호 확인이 일치하지 않습니다").required("")
 })
 //--------------------------------------------------------------------------------------------------------------
 

@@ -11,6 +11,9 @@ import { useForm } from "react-hook-form"
     yup 을 사용했다  -->  yup 은 스키마를 생성하는 것이다  -->  스키마 : 제약조건 (유효성 검사와 같은 말이다)
     이러한 "제약조건" 을 만드는 것이 "yup" 의 역할이다 (스키마를 만들어주고, yupResolver 에 등록하면 끝이다  -->  정말 편리하다)
 
+    -->  yupResolver 는 "@hookform/resolvers/yup" 에서 import 받아줬다  -->  ("@hookform/resolvers" 에서 import 받은 것이 아니다)
+    -->  npm i @hookform/resolvers  -->  설치는 이걸로 해줬지만 import 해온 곳이 다른 것이다 (공식문서 확인하자)
+
     yup : 제약조건 (유효성 검사) 을 쉽게 만들기 위한 라이브러리이다
 */
 
@@ -46,7 +49,7 @@ const SignInForm = () => {
     } = useForm({
         mode: "onChange",  //--> "all" 로 작성해줘도 된다 (제출했을 때만이 아닌, 매번 검사하는 것)
         resolver: yupResolver(signInFormSchema),  //-->  위에서 yup 으로 만들어준 스키마를 등록해준 것이다
-    })
+    })                                                                               //-->  "@hookform/resolvers/yup" 에서 import 받아준 것이다
     
     /*
         이렇게 "submit" 하는 방법이 다르다  -->  handleSubmit 이라는 친구를 onSubmit 안에 감싸주는 형태로 만들어야한다
@@ -61,6 +64,8 @@ const SignInForm = () => {
     // 제출이벤트로 실행시킬 함수이다  -->  handleSubmit 으로 감싸서 실행시켜주면 된다
     const handlePressSignIn = (data) => {
         if(data.email === "test@test.com" && data.password === "testtest") {
+            // 원래는 event 를 매개변수로 받아줬고, event.target.value 이런식으로 사용해줬다
+            //--> 하지만 yup 은  "data.등록이름"  이렇게 사용해주면 된다 (콘솔도 찍어보고, 공식문서도 잘 확인하자)
             return navigate("/todo/3")
         }
         alert("아디이와 비밀번호를 확인해주세요")
@@ -74,14 +79,15 @@ const SignInForm = () => {
             //-->  이름 등록시켜주기 위해 name 속성도 전달받아준 것 확인할 수 있다 ( name={'email'} )
             error={errors.email?.message}
             //-->  이메일에 에러가 있다면 메세지를 실행시키는 요직을 error 속성으로 전달해준 것을 확인할 수 있다  -->  FormInput 가서 확인해보자
-            //-->  여기서 메세지는 "이메일 양식이 아닙니다" 가 된다 (상단에 스키마 작성할 때 적었다)
+            //-->  여기서 메세지는 "이메일 양식이 아닙니다" 가 된다 (상단에 스키마 작성할 때 적었다)  -->  email('이메일 양식이 아닙니다')
         />
 
         <FormInput label={"비밀번호"} placeholder={"password"} size={3} name={'password'} register={register}
             error={errors.password?.message}
+            //-->  yup 에 등록한 password 에 에러가 있다면 메세지가 뜬다  -->  min(8, '비밀번호는 8글자 이상 입력해주세요')
         />
 
-        <TDButton variant={'primary'} size={'full'} shape={'shape'} disabled={!isValid}>{/*--> 유효성 검사에 어긋나면 true 이다*/}
+        <TDButton variant={'primary'} size={'full'} shape={'shape'} disabled={!isValid}>{/*--> isValid : 유효성 검사에 어긋나면 false 이다*/}
             로그인
         </TDButton>
         
