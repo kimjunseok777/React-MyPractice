@@ -58,36 +58,41 @@ export const getTodos = http.get("/api/todo", async () => {
 //------------------------------------------------------------------------------------------------------------------------------
 // 수정 :
 
-// export const updateTodo = http.patch()
+export const updateTodo = http.patch("/api/todo", async({request}) => {
+    // querystring 으로 데이터를 받을 것이다  -->  ex) api/todo?todoId=3
+    // 공식문서 보고 따라할 것이다
+    const url = new URL(request.url)
+    const todoId = url.searchParams.get('todoId')
 
-/*
-    프론트엔드 개발자 입장 :
-        업데이트를 하기 위해 프론트엔드가 request 에 실어서 보내야하는 input 의 값은 무엇일까?
-        -->  id , 변경된 값
+    // 값이 올 때까지 기다리기 위해서 await 을 걸어주는 것이다
+    const {title, content} = await request.json() //--> body 데이터로 받는다 (title, content 객체 구조분해할당으로 빼낸 것이다)
+    //-->  await 을 달아주는 이유는 json() 도 Promise(비동기) 이기 때문에 await 또는 then 을 달아주지 않으면 밑에 있는 return 문이 먼저 실행해버린다
+    // 비동기와 비동기처리를 잘 구분해야한다  -->  await 을 걸어주지 않으면, 밑에 있는 title 과 content 에 제대로된 값이 오지 않는다 (아마 Promise pending 걸려 있을 것이다)
 
-    백엔드 개발자 입장 :
-        id 를 어떻게 받아야할까?  -->  주소에도 querystring, params, body 가 있다
-        -->  id 는 querystring 으로 받아오자 (user.api.js 에서 했었으니 참고하자  -->  request.url)
-        -->  변경된 값은 body 에 실어서 가져오자  -->  request.json()
-        -->  return { id , 변경된 값 }
-*/
+    return HttpResponse.json({
+        todoId,
+        title,
+        content
+    })
+})
+
+
 
 //------------------------------------------------------------------------------------------------------------------------------
 // 삭제 :
 
-// export const deleteTodo = http.delete()
+export const deleteTodo = http.delete("/api/todo/:todoId", ({params}) => {
+    // body 데이터를 받을 때만 async 하고 await 달아주기 때문에, delete 는 body 데이터 필요 없기에 async 안 써준 것
+    const {todoId} = params  //-->  이제 params 에 투두 아이디가 들어가 있는 것이다
+    //-->  원래라면 DateBase 에 접근해서 실제로 데이터를 삭제하는 sql 넣어야한다 (거기서 return 할때 삭제된 투두의 id 를 가져올 수 있는 것이다)
 
-/*
-    프론트엔드 개발자 입장 :
-        delete 는 보내야하는 데이터는 id 뿐이다
-        -->  querystring 으로 보낼지, params 으로 보낼지는 백엔드 마음이다
+    return HttpResponse.json({
+        status: 200,
+        body: {
+            id: parseInt(todoId) //--> id 의 값이 number 가 아닌 string 형태로 오기 때문에 parseInt 로 감싸준 것이다
+        }
+    })
+})
 
-    백엔드 개발자 입장 :
-        id 는 params 로 받으면 된다
-        -->  메소드는 delete , 주소는 "/api/todo/:todoId" 이런 식으로 해주면 된다
-
-    ex)
-    export const deleteTodo = http.delete("/api/todo/:todoId")  -->  이런식으로 하면 된다
-
-    return { id }
-*/
+// 삭제를 하기 위해서 필요한 값은, 그 투두의 고유한 값이다  -->  즉, 삭제할 투두의 id 가 필요하다
+//-->  파라미터로 고유한 값을 전송해주자

@@ -7,22 +7,20 @@ import { deleteTodo, updateTodo } from "../../../store/todo.slice"; //-->  상�
 
 const OneTodo = ({todo}) => {
 
-    // const { todos, setTodos } = useTodo()
-    const dispatch = useDispatch() //--> "react-redux" 에서 import 받은 것이다
-    // 부모에서 props 로 전달받은 todo 로 상태변화 요직을 모두 해결하기 때문에, 따로 useSelector 사용하지 않은 걸 확인할 수 있다
+    const dispatch = useDispatch()
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
     // 삭제 :
-    const onPressDeleteTodo = () => {
-        const todoId = todo.id
-
-        // 원래 쓰던 전역상태요직 삭제해주고, 객체를 전달하는 dispatch 넣어준 것이다
-        // 이렇게 앞에서 만들었던 reducer 의 key 값인 deleteTodo 이것만 import 받아서 사용하면 되는 것이다 (그래서 여기서는 따로 useSelector 사용하지 않은 것이다)
-        dispatch(deleteTodo({
-            id: todoId //-->  "action.payload.id" 했다면 이렇게 하면 된다  -->  따로 todoId 선언해주지 않고, 여기다가 todo.id 적어도 된다
-            // 이게 아니라 slice 만들 때 "action.payload" 이렇게 했다면  -->  deleteTodo(todoId) 이렇게 객체 전달하면 된다
-            //==>  상태변화 함수 안에 있는 내용물은 action 이라는 이름의 객체로 전달되는 것이다
-        }))
+    const onPressDeleteTodo = async () => {
+        const todoId = todo.id //-->  이 투두 아이디를 백엔드(msw) 로 보내면 되는 것이다
+        const response = await fetch(`/api/todo/${todoId}`, {
+            method: "delete"
+        })
+        const data = await response.json()
+        // console.log(data.body)
+        
+        dispatch(deleteTodo(data.body))
+        // dispatch(deleteTodo({ id : data.body.id }))  //-->  이렇게 해줘도 된다
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -34,13 +32,23 @@ const OneTodo = ({todo}) => {
         setIsEditMode(true)
     }
 
-    const onPressEdit = () => {
-         const todoId = todo.id
-         const content = contentRef.current.value
+    // msw 수정 :
+    const onPressEdit = async() => {
+        const todoId = todo.id
+        const content = contentRef.current.value
+
+        const response = await fetch(`/api/todo?todoId=${todoId}`, {
+            method: "patch",
+            body: JSON.stringify({
+                content
+            })
+        })
+        const data = await response.json()
+        // console.log(data)
 
         dispatch(updateTodo({
-            id: todoId,
-            content
+            id: parseInt(data.todoId), //--> 수정 부분에서는 dispatch 를 보낼 때 parseInt 를 해줬다 (todo.api.js 또는 todo.slice.js 에서 해줘도 된다)
+            content: data.content
         }))
 
         setIsEditMode(false)
