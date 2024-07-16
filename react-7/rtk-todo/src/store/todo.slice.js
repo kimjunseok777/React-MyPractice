@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
-    // 기본값은 "객체" 안에 todo 라는 key 값으로 "배열" 이 들어가있는 형태이다  -->  즉, 이 todo 라는 배열에 접근하려면 객체 접근법으로 써야한다
+    // 기본값은 "객체" 안에 todo 라는 key 값으로 "배열" 이 들어가있는 형태이다  -->  즉, 이 todo 라는 배열에 접근하려면 객체 접근법으로 써야한다 ex) state.todo
     todo: [  //-->  기본값이 없으면 빈배열 넣어주면 된다  -->  ex) todo : [ ]
         {
             id: 1,
@@ -29,7 +29,7 @@ export const todoSlice = createSlice({
 
     initialState, //-->  이렇게 initialState 넣지 않으면 기본값이 undefined 로 찍힌다 (넣어주는 것이 좋다)  -->  공식문서와 똑같이 한 것이다 ***
 
-    // 그냥 reducer 에서는 switch 문의 case 로 작성해줬다면, RTK 에서는 이것이 "reducers" 안에 있는 key 값들이라고 보면 된다 (addTodo, deleteTodo ... 등등)
+    // 그냥 redux 에서는 switch 문의 case 로 작성해줬다면, RTK 에서는 이것이 "reducers" 안에 있는 key 값들이라고 보면 된다 (addTodo, deleteTodo ... 등등)
     reducers: {
 
         //-->  공식문서에서는 increment, decrement ... 등등 으로 되어있는데, 이 부분이 action.type 이라고 보면 된다 (이 type 을 정해주면 자동으로 이뤄지는 것이다)
@@ -49,6 +49,8 @@ export const todoSlice = createSlice({
             //-->  사용할 때 이 이름이 자동으로 type 명이 되고, 이 함수안에 작성하는 것이 자동으로 payload 가 되는 것이다  -->  dispatch( updateTodo( { ... } ) )
             const findTodo = state.todo.find((todo) => todo.id === action.payload.id)  //-->  id 값이 같은 객체 (배열의 요소) 를 반환한다
             findTodo.content = action.payload.content  //-->  id 값이 같은 요소의 content 값을 dispatch 로 받아온 데이터로 바꾼다
+            //-->  이렇게 새로 findTodo 를 선언해줘도, 배열이나 객체는 참조값이라 주소값이 같기 때문에 가능한 것이다 (불변성이 유지되기에 가능한 방식이다)
+            //-->  즉, findTodo 선언해준 것은 state.todo 의 id 가 같은 주소부분을 찝어서 선언해준 것이다  -->  즉, findTodo 바꾸면 state.todo 도 바뀌는 것이다
         },
     }
 })

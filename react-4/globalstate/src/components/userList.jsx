@@ -12,7 +12,7 @@ const UserList = () => {
         id: 1,
         name: "김사과"
     }])
-    // const [ 상태명 , action 전달 함수 - 즉, dispatch 적어주면 된다 ] = useReducer( action 전달할 함수 , 상태의 기본값 )
+    // const [ 상태명 , dispatch ] = useReducer( action 전달받는 함수 , 상태의 기본값 )
 
 
     const handlePressAddUser = () => {
@@ -41,6 +41,7 @@ const UserList = () => {
         // 매번 추가하는 요직을 작성하지 않아도, dispatch 로 객체(action)만 전달하면 추가가 자동으로 이루어지는 것이다
         //-->  코드를 매번 칠 필요가 없어진다
     }
+
 
     return <div>
         <button onClick={handlePressAddUser}>추가</button>

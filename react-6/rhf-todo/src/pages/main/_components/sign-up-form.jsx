@@ -37,6 +37,7 @@ const signFormSchema = yup.object().shape({
     email: yup.string().email('이메일 양식이 아닙니다').required(""),
     password: yup.string().min(8, '비밀번호는 8글자 이상 입력해주세요').required(""),
     'password-confirm': yup.string().oneOf([yup.ref("password")], "비밀번호 확인이 일치하지 않습니다").required("")
+    //-->  oneOf : 뒤에 있는 배열에 맞는 값을 true 로 반환한다  -->  앞에 지정해준 비밀번호와 값이 똑같은지 검사할 때 자주 사용한다
 })
 //--------------------------------------------------------------------------------------------------------------
 

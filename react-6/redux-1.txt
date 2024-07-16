@@ -38,7 +38,7 @@ Redux
         ==>  로거 : (action, prev, next)  -->  콘솔을 찍지 않아도, 이전에 바뀌어야 하는 상태값, 이전에 전달한 상태값 등등 console.log 를 자동으로 찍어준다
                            그래서 우리가 에러를 추적할 때  -->  action 에 undefined 찍혀있네?  -->  이런 식으로 에러를 찾기가 쉬워진다 (로거는 미들웨어이다)
 
-        ==>  히스토리 : 어디서 에러가 발생했는지 확인하기 위해 "뒤로가기" , "앞으로가기" 등등 을 할 수 있다 (상태가 여러차례 바뀔 때 디버깅 할 때 좋다)
+        ==>  히스토리 : 어디서 에러가 발생했는지 확인하기 위해 "뒤로가기" , "앞으로가기" 등등 을 할 수 있다 (상태가 여러차례 바뀌는 경우에 디버깅 할 때 좋다)
         
         ) 정리해보자면, "로거" 는 상태값을 콘솔을 자동으로 찍어주는 도구이고 "히스토리" 는 뒤로가기, 앞으로가기 등의 기능을 할 수 있는 도구이다 (에러 찾기 용이)
     
@@ -52,7 +52,6 @@ Redux
         미들 웨어 : 중간에서 데이터를 가공해주는 것
 
         ==>  백엔드에 요청은 무조건 성공하는 것이 아니라 실패할 수도 있다  ==>  요청과 결과에 따라 모두 다 상태가 변경될 필요가 있다
-
 
         ex) 백엔드에서 받아오는데 시간이 오래걸린다면?  -->  "로딩중" 등의 화면을 보여줘야한다
                -->  Redux 가 아닌 useReducer 만을 썼을 때 어떻게 해야되는지 밑의 코드를 봐보자
@@ -77,7 +76,7 @@ Redux
                     })   ---   실패
                }
 
-               -->  이렇게 Redux 를 안쓰고 useReducer 만 쓴다면 위처럼 dispatch 를 세번이나 사용해줘야 된다 (어려워지고 복잡해진다)
+               -->  이렇게 Redux 를 안쓰고 useReducer 만 쓴다면 위처럼 dispatch 를 세번씩이나 사용해줘야 된다 (어려워지고 복잡해진다)
                -->  "redux saga" , "redux thunk" 라고 하는 "미들웨어" 를 사용해주면 위의 과정들을 자동으로 해준다
 
     ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -101,6 +100,7 @@ Redux
 
         -->  redux 에서 createStore (저장소) import 받아서 만들어주자  ex) import { createStore } from "redux"  -->  const store = createStore( )
         -->  Provider 만들어주자 (import 받아야 된다)  ex) import { Provider } from "react-redux"  -->  <Provider> 전역상태 사용될 컴포넌트 </Provider>
+        -->  만들어준 Provider 속성 값으로 store 만들고 createStore 만든 값 넣어주자
 
 
         ** 경로 이동 : App.js  -->  todo.jsx  -->  App.js (Provider 에 store 라고 하는 값을 전달해주자) , (Provider 안에 Todo 컴포넌트 넣어주자)
@@ -117,7 +117,7 @@ Redux
         -->  todo.reducer.js , user.reducer.js 는 useReducer 로 실행시킬 함수가 작성 되어있는 파일이다 (todo, user 라는 이름으로 import 받아와줬다)
 
         -->  root.js 는 todo.reducer.js , user.reducer.js 들을 한곳에 모아주는 파일이다  -->  combineReducers 을 통해 모아주고, export 시켜주는 것이다
-                                                                                                                                           -->  그리고 이것을 createStore 에 담아주고, Provider 에 넣는 것이다
+                                                                                                                                           -->  그리고 이것을 createStore 에 객체의 key 로 담아주고, Provider 에 넣는 것이다
                                                                                                                                            -->  즉, 상태나 변화요직을 추가하고 싶다면 combineReducers 에
                                                                                                                                                    key 값만 만들어서 추가해주면 되는 것이다
                                                                                                                                            -->  Provider 여러개 만들지 않아도 된다  ***
@@ -138,7 +138,7 @@ Redux
 
             3. combineReducers 로 생성한 useReducer 함수들 저장  -->  combineReducers({todo, user})  -->  (합칠 reducer 를 객체의 key 값으로 넣어주면 된다)
 
-            4. 앞에서 생성한 중앙 저장소 createStore 에 combineReducers 결합시킨 것 전달  -->  createStore( rootReducer )
+            4. 앞에서 생성한 중앙 저장소 createStore 에 reducer 들 객체의 key 로 나눠서 합쳐준 combineReducers 전달  -->  createStore( rootReducer )
 
 
             ==>  이러면 redux 를 사용할 준비는 끝난 것이다 (이제 컴포넌트 <Todo/> 컴포넌트에 가서 사용해주면 되는 것이다)  -->  useSelector 로 받아와서 사용해준다
@@ -146,7 +146,7 @@ Redux
             ==>  나머지 사용법은 useReducer 와 똑같다 (이미 Provider 로 감싸줬기에 useContext 만들듯이 Provider 를 매번 생성하지 않아도 된다)
 
             ==>  만약에 redux 가 아닌 useContext 를 썼다면, App.js 에 Provider 하나로 감싸주는 것이 아니라
-                     <TodoProvider/> 뿐만 아니라 <UserProvider/> 하나 더 만들어서 감싸줬어야 됐을 것이다 (이럴 필요가 없다 이제)
+                     <TodoProvider/> 뿐만 아니라 <UserProvider/> 하나 더 만들어서 감싸줬어야 됐을 것이다  -->  redux 전역상태 관리도구를 사용하면 이럴 필요 없어진다
 
                      -->  이렇게 하지 않아도, 우리가 rootReducer 안에 등록해줬기 때문에 Provider 를 매번 생성해주지 않아도 되는 것이다
                      -->  rootReducer 안의 combineReducers 에 등록만 해주면 되는 것이다 (createStore 가 이 rootReducer 를 담고 있기 때문)
@@ -162,6 +162,7 @@ Redux
 ** 경로 이동 : App.js  -->  todo.reducer.js
 
         -->  reducer 로 실행시킬 함수 (switch 문) 를 작성해주고 todo.jsx 가서 사용해주자 (Provider 로 감싸고 있는 컴포넌트가 Todo 컴포넌트이다)
+        -->  reducer 로 실행시키는 함수는 dispatch 로 action 이라는 객체를 전달받아 실행된다
 
 
         ** 경로 이동 : todo.reducer.js  -->  todo.jsx
@@ -169,14 +170,14 @@ Redux
         -->  useSelector 를 import 받아서 사용해주자  -->  ex) import { useDispatch, useSelector } from "react-redux"
 
         -->  useSelector 는 콜백함수로 사용해주면 된다  -->  ex) const todoList = useSelector((store) => store.todo)
+                                                                                        -->  이렇게 combineReducers 에 만들어준 key 값으로 전역상태를 가져와서 사용하면 되는 것이다
 
-        -->  생성해준 todoList (initialState) 에 요소를 추가해주는 요직 (클릭이벤트) 를 만들어보자
+        -->  생성해준 todoList (initialState) 에 요소를 추가해주는 요직을 만들어보자 (클릭이벤트)
+        
 
-        ) 과제 : 추가는 만들었다  -->  "삭제" 와 "수정" 요직도 만들어보자 ***
+        )==>  ** 중요 : redux 상태를 바꾸는 것은 return 된 값이다  ==>  즉, redux 에서 switch 문의 return 된 값으로 setState 를 해서 상태를 바꾼다고 이해하면 된다  ***
 
-        )==>  ** 중요 : redux 상태를 바꾸는 것은 return 된 값이다  ==>  즉, redux 에서 switch 문의 return 된 값으로 setState 를 해서 상태를 바꾼다고 이해하면 된다
-
-        ) return 된 값으로 상태변경 때 쓰이는 set 함수를 사용하는 것이다
+        ) return 된 값으로 상태변경 때 쓰이는 set 함수를 사용하는 것이다  ***
 
 
 ===================================================================================================

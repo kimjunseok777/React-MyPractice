@@ -4,7 +4,7 @@
 
 //-->  useReducer 로 실행시킬 요직은 이렇게 함수 형태로 만들어줘야 한다
 //-->  매개변수 이름은 상관 없지만, 순서는 중요하다  -->  ( state , action )  -->  첫번째가 상태인 state, 두번째가 객체로 전달되는 action (dispatch 로 전달된다)
-//-->  action 은 전달받는 객체이다  /  state 는 상태이다
+//-->  state 는 "상태" 이다 / action 은 전달받는 "객체" 이다
 //-->  상태는 useReducer 로 선언해준 상태가 되는 것이다 (userList.jsx 에서 확인이 가능하다)
 
 export const userReducer = (state, action) => {
@@ -31,7 +31,8 @@ export const userReducer = (state, action) => {
         case "DELETE_USER":
             return state.filter((user) => user.id !== action.payload.id)  //-->  즉, id 같은 것은 실행시키는 함수의 매개변수로 전달받아서 사용하면 되는 것이다
             //-->  삭제는 filter 를 쓴것만으로도 "새로운 배열" 이 생성되기에, [ 대괄호 ] 로 따로 감싸주지 않은 것이다
-            //-->  이 삭제 요직은 payload 의 삭제할 id 만 전달해주면 되는 것이다
+            //-->  이렇게 삭제 요직은 payload 의 삭제할 id 만 전달해주면 되는 것이다
+            //==>  이렇게 return 된 값이 set함수에 들어간다고 이해하면 쉽다 (return 된 값으로 상태를 변경시키는 것이다)
 
 
         default :
