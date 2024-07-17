@@ -22,6 +22,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
         }
 
         dispatch(addTodo(newTodo)) //-->  여기서 newTodo 는 action 객체 안의 payload 객체로 전달된다
+        //-->  즉, reducer 함수 안에 내용물을 작성하면, 이 내용물 자체가 payload 객체 안에 담기는 것이다  -->  action.payload 인 것이다
         //-->  즉, newTodo 는 action 이라는 객체인 { payload : { id:~, title:~, content:~, state:~ } } 가 되는 것이다
 
         setIsOpenAddTodoModal(false)
