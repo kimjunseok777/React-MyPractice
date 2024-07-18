@@ -162,6 +162,7 @@
 
 
         ) 결론은, 동기적 코드를 실행하는데 있어서 비동기 코드가 필요하다면, 이 동기적으로 실행하는 코드도 "비동기 처리" 해줘야 한다는 얘기이다
+        )-->  비동기처리는 then 이나 await 으로 한다
         ) 이게 만약에 싫다고 한다면 그냥 then 을 계속 쓰면 된다  -->  ( fetch 가 Promise 라고 생각하면 된다 )
         ) Promise 로 말았다고 생각하면 편하다
         fetch(( result ) => result.json()).then(( data ) => console.log( data ))  -->  이렇게 쓰면 된다
