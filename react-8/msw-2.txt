@@ -8,16 +8,16 @@ msw-2 는 투두페이지에서 msw 적용시키는 것부터 시작하는데, �
 
 ** 경로 이동 : todo.api.js  /  todoList.jsx
 
-        -->  getTodos , addTodo 를 fetch 로 데이터를 불러와서 사용해볼 것이다
+        -->  getTodos , addTodo 를 fetch 로 데이터를 불러와서 사용해볼 것이다  -->  조회, 생성 해볼것이다
 
         -->  데이터를 불러와서 사용하는 페이지는 투두페이지이기에 todoList.jsx 로 이동해주자
 
-        ==>  우리가 만든 todoSlice 에는 getTodo 가 없기 때문에 전역상태관리 reducer 에 추가해주자 (백엔드에서 todo 데이터 불러올 것이기 때문에 필요하다)
+        ==>  우리가 만든 todoSlice 에는 조회 (getTodo) 가 없기 때문에 전역상태관리 todoSlice 에 추가해주자 (가상 백엔드에서 todo 데이터 불러올 것이기 때문에 필요하다)
 
 
 ** 경로 이동 : todoList.jsx  -->  todo.slice.js
 
-        -->  reducer 에 getTodos 추가해주자
+        -->  reducer 에 getTodos 추가해주자 (백엔드에서 데이터 불러와서 조회하는 기능 만들어줄 것이다  -->  todoList.jsx 에서 fetch 로 투두 데이터 불러와서 사용하면 된다)
 
         -->  Mocking API 에서 불러운 todo 의 결과값을 전역상태관리 하기 위해서 todoSlice 의 reducers 에 getTodos 를 추가하고
                 기본 값이었던 todo (initialState) 를 빈 배열로 만들어줬다  -->  이제 백엔드에서 불러올거니까 필요 없기 때문이다

@@ -36,6 +36,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
         //---------------------------------------------------------------------------------------------------------------------------
         /*
         // redux thunk 사용하면 필요없기에 주석처리 해준 것 :
+        // 작성 :
 
             const result = await fetch("/api/todo", {
                 method: "post",

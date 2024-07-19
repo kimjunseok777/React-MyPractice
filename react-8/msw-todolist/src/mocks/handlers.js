@@ -1,7 +1,9 @@
 import * as UserApi from "./apis/user.api"  //-->  Mock 데이터가 있는 login 받아온 것이다
 // 이렇게 import 받으면 객체형태로 export 되어 있는 것들을 다 가져온다
 // 그렇기에 { login : function } 이렇게 사용할 것이다  -->  export 된 login 으로 value 인 function 만 가져올 것이다
+
 import * as TodoApi from "./apis/todo.api"
+// "./apis/todo.api" 에서 export 된 것들 전부다 TodoApi 이름으로 import 받아온 것이다
 
 
 // 작성하기 전에 msw 공식문서 확인해보자 **  -->  모두 삭제하고 UserApi 로 바꿔줬다

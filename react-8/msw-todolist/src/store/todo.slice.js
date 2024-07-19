@@ -2,8 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 
 const initialState = {
-    todo: [],
+    todo: [], //-->  이제 투두리스트의 기본값도 백엔드에서 받아와서 사용할 것이기에 빈배열로 만들어준 것이다
     // 투두리스트가 로딩중 이란 것을 보여주자
+    // redux thunk :
     addTodoState: {
         loading: false, //--> 아무것도 요청이 안올 때는 로딩이 false 인 상태이다
         done: false, //-->  done 은 요청이 성공이든 실패든 끝났는지, 끝나지 않았는지 확인하는 친구이다
@@ -36,6 +37,7 @@ export const todoSlice = createSlice({
         //==>  extraReducers 로 사용해주기 위해 addTodo 빼줬다
 
         //--------------------------------------------------------------------------
+        // 조회 :
         //-->  백엔드에서 불러온 데이터를 state.todo 에 셋팅하기 위해서 reducer 에 getTodo 를 추가해준 것이다 (전역상태관리 추가해준 것)
         //-->  이제 msw 로 백엔드에서 데이터를 불러와 list 를 보여줄 것이기에 이 reducer 가 필요한 것이다
 
@@ -55,6 +57,7 @@ export const todoSlice = createSlice({
         */
         getTodos: (state, action) => {
             state.todo = action.payload
+            //-->  백엔드에서 오는 데이터인 data 배열에 id, title, content, state 모두 있기에, 이 응답받은 data 배열 자체를 payload 에 넣주면 조회가 되는 것이다
         },
         //--------------------------------------------------------------------------
 

@@ -7,8 +7,8 @@ import { http, HttpResponse } from "msw";
 
 // 투두를 추가한다면 백엔드에서 어떤 데이터를 줘야할까?  -->  title, content 가 포함된 객체를 줘야한다  -->  즉, input 데이터를 줘야한다
 export const addTodo = http.post("/api/todo", async ({ request }) => {
-    // 백엔드에게 input 에서 value 데이터를 줘야함  -->  title, content  -->  객체로 전달하기에 body 에 실어서 보내면 좋다
-    //-->  백엔드에게 요청할 때 title 과 content 를 body 에 실어서 요청하는 것이다
+    // 백엔드에게 input 에서의 value 데이터를 줘야함  -->  title, content  -->  객체로 전달하기에 body 에 실어서 보내면 좋다
+    //-->  백엔드에게 요청할 때 title 과 content 를 body 에 실어서 요청하는 것이다  -->  request 매개변수에 title, content 가 전달된다
     const { title, content } = await request.json()
     
     // 원래라면 여기에 실제로 백엔드가 Date Base 에 저장하고, 저장할 때 생긴 고유번호를 id 로 삼은 객체로 전달해야 하는 것이 맞다
@@ -22,6 +22,7 @@ export const addTodo = http.post("/api/todo", async ({ request }) => {
             content,
             state: false,
         } //--> 이렇게 프론트엔드에서 요청받으면, 데이터 전달하는 것이다
+        //-->  프론트는 이 데이터를 response 로 받아서 json 으로 바꿔준 후에 dispatch 로 넣어주면 되는 것이다
     })
 })
 
@@ -30,9 +31,9 @@ export const addTodo = http.post("/api/todo", async ({ request }) => {
 
 // 여러개 불러올 거기 때문에 todos 로 해줬고, 불러오는 것이기에 "get" 이다
 export const getTodos = http.get("/api/todo", async () => {
-    // get 은 조회이다  -->  그럼 get 은 request 하는 부분이 무엇일까?  -->  없다, 아무것도 보내지 않아도 된다
+    // get 은 조회이다  -->  그럼 get 은 request 하는 부분이 무엇일까?  -->  없다, 아무것도 보내지 않아도 된다 (프론트엔드가 아무 데이터 없이 요청만 하면 된다)
     // 그렇다면, 만약에 내가 쓴 데이터만 불러오고 싶다면 어떻게 요청해야할까?  -->  출입증  -->  우리가 작성한 "token" 을 줘야한다 (axios 때 제대로 한다)
-    //-->  token 은 자동으로 데이터에 실리기 대문에 따로 보내지 않아도 된다
+    //-->  token 은 자동으로 데이터에 실리기 때문에 따로 보내지 않아도 된다
     //-->  token 주는 방법은 다음에 배운다
 
     return HttpResponse.json({
@@ -53,7 +54,7 @@ export const getTodos = http.get("/api/todo", async () => {
         ]
     })
 })
-//-->  그냥 지금까지 우리가 만들었던 투두 목데이터 적어준 것이다 (기본값 넣어준 것이다)
+//-->  그냥 지금까지 우리가 만들었던 투두 목데이터 적어준 것이다 (투두리스트 기본값 만들어준 것이다 것이다)
 
 //------------------------------------------------------------------------------------------------------------------------------
 // 수정 :
