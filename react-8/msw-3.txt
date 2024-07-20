@@ -37,7 +37,7 @@ msw-3 수업은 과제였던 msw 로 delete 투두와 update 투두를 해보고
 
 ** 경로 이동 : mocks  -->  apis  -->  todo.api.js
 
-        -->  삭제 만들어주자
+        -->  "삭제" 만들어주자
 
         -->  주소로 데이터를 보내는 방법은 두가지가 있다
                 ) querystring  -->  request 값의 url 로 받는다  -->  ex) request.url
@@ -57,12 +57,13 @@ msw-3 수업은 과제였던 msw 로 delete 투두와 update 투두를 해보고
 
 ** 경로 이동 : oneTodo.jsx  -->  todo.api.js
 
-        -->  수정 만들어주자
+        -->  "수정" 만들어주자
 
         -->  querystring 으로 데이터를 받을 것이다  -->  ex) api/todo?todoId=3
         -->  msw 공식문서에서 url 로 데이터 받는 거 확인해주자
 
         -->  가상 api 에서 body 데이터 받을 때만 await 달아주면 된다 (async 함수)
+        -->  body 데이터 안받을 때는 await 쓸 필요 없기 때문이다  -->  하지만 수정은 body 데이터 받는다
 
 
 ** 경로 이동 : todo.api.js  -->  oneTodo.jsx
@@ -71,6 +72,7 @@ msw-3 수업은 과제였던 msw 로 delete 투두와 update 투두를 해보고
 
         -->  마찬가지로 응답받은 값 콘솔 찍어서 데이터 어떤 식으로 왔는지 확인해보고, dispatch 에 값 넣어주자
 
+        ==>  params , querystring 데이터 전달받는 부분 연습 많이 해주자
 
         ==>  여기까지하면 rtk, msw 수업 종료이다  -->  지금까지 한 것들 thunk 로 바꿔보면서 연습하자
 

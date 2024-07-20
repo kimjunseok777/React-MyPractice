@@ -1,0 +1,30 @@
+
+
+
+동기 / 비동기
+
+const data = res.json()  -->  json() 이것이 비동기이다
+console.log(data)  -->  동기 코드이기에, 위에 json() 은 팬딩 상태이기에 await 을 걸어줘야한다  -->  제 값이 나오기 위해선 위에 비동기인 json() 이 필요로 한다
+
+const data = await res.json()  -->  await 으로 비동기가 처리되기 전까지 할당하는 것을 대기상태를 걸어놓은 것이다
+console.loading(data)  -->  위에 await 이 걸려있기 때문에, data 에 비동기가 모두 실행되고 제값이 할당되기 전까지, 이 밑에있는 콘솔은 대기상태가 걸린다
+
+
+===================================================================================================
+
+
+const data = res.json()
+
+
+동기 === 순차적
+const data = 3;
+console.log(data) // 3
+console.log(2) // 2
+
+--------------------------------------------
+
+비동기 == 순차적이지 않다
+res.json() --> 3
+
+const data = res.json() .then((result)=> console.log(result)) // 3
+console.log(data) // pending (대기중)

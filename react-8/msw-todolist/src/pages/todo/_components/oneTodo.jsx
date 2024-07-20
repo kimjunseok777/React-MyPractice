@@ -13,7 +13,7 @@ const OneTodo = ({todo}) => {
     // 삭제 :
     const onPressDeleteTodo = async () => {
         const todoId = todo.id //-->  이 투두 아이디를 백엔드(msw) 로 보내면 되는 것이다
-        const response = await fetch(`/api/todo/${todoId}`, {
+        const response = await fetch(`/api/todo/${todoId}`, { //-->  굳이 todoId 로 선언 안 해주고 todo.id 로 작성해도 된다
             method: "delete"
         })
         const data = await response.json()
@@ -37,6 +37,8 @@ const OneTodo = ({todo}) => {
         const todoId = todo.id
         const content = contentRef.current.value
 
+        //------------------------------------------------------------------------------------------------------
+        // 수정 :
         const response = await fetch(`/api/todo?todoId=${todoId}`, {
             method: "patch",
             body: JSON.stringify({
@@ -50,6 +52,7 @@ const OneTodo = ({todo}) => {
             id: parseInt(data.todoId), //--> 수정 부분에서는 dispatch 를 보낼 때 parseInt 를 해줬다 (todo.api.js 또는 todo.slice.js 에서 해줘도 된다)
             content: data.content
         }))
+        //------------------------------------------------------------------------------------------------------
 
         setIsEditMode(false)
     }

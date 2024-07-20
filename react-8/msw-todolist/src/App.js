@@ -32,8 +32,7 @@ function App() {
   //   async function initializeMsw() { //-->  server.start() 도 비동기이기 때문에 await 달아줘야돼서 async 함수로 만들어준 것이다
   //     if(!isMswInit && process.env.NODE_ENV === "development") {
   //       await server.start()
-  //       setIsMswInit(true)
-  //       //--> 강제리랜더링
+  //       setIsMswInit(true) //--> 강제리랜더링
   //     }
   //   }
   //   initializeMsw()

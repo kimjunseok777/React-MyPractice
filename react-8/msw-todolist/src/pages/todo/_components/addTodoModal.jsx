@@ -4,7 +4,6 @@ import TDButton from "../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo } from "../../../store/todo.slice"; //-->  dispatch 안에서 사용해주는 상태변화 함수를 import 받은 것이다
 import { useEffect } from "react";
-// import { useTodo } from "../../../store/todo.store";
 
 
 const AddTodoModal = ({setIsOpenAddTodoModal}) => {
@@ -13,6 +12,13 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
 
     const state = useSelector((store) => store.todo.addTodoState)
     console.log(state) //-->  로딩, 성공, 실패 등등 확인할 수 있다
+    /*
+        state : {
+            loading: false,
+            done: false,
+            error: null
+        }
+    */
 
     //------------------------------------------------------------------------------------------------
     // msw 수업 :
@@ -33,6 +39,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
             })
         )
         //-->  백엔드에 요청하는 것은 이미 thunk 에다가 다 작성을 해놨기에, 이렇게만 데이터를 보내면 끝난다
+        //-->  todo.slice.js 에서 fetch 로 데이터 요청했다
         //---------------------------------------------------------------------------------------------------------------------------
         /*
         // redux thunk 사용하면 필요없기에 주석처리 해준 것 :

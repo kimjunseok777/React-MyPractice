@@ -7,7 +7,7 @@ const initialState = {
     // redux thunk :
     addTodoState: {
         loading: false, //--> 아무것도 요청이 안올 때는 로딩이 false 인 상태이다
-        done: false, //-->  done 은 요청이 성공이든 실패든 끝났는지, 끝나지 않았는지 확인하는 친구이다
+        done: false, //-->  done 은 요청이 성공이든 실패든 상관없이 끝났는지, 끝나지 않았는지를 확인하는 친구이다
         error: null,
     }
     /*
@@ -15,7 +15,7 @@ const initialState = {
         투두가 성공했다면 : loading 은 false 로 바꾸고, done 은 true 로 바꿔줘야한다, todo 는 값 채워줘야한다  -->  [...state, newTodo]  -->  dispatch
         투두가 실패했다면 : loading 은 false 로 바꾸고, done 은 true 로 바꿔줘야한다, error 에 메세지 넣어야한다  -->  error.message  -->  dispatch
 
-        ==>  dispatch 3번 해야한다  -->  이렇게 dispatch 를 여러번 하게 redux 가 만들었을까? (contextApi 사용했다면 진짜로 dispatch 3번 다해야한다)
+        ==>  dispatch 3번 해야한다  -->  이렇게 dispatch 를 여러번 하게 redux 가 만들었을까? (contextApi 사용했다면 진짜로 dispatch 3번 다 해야한다)
         ==>  redux 의 thunk 를 사용하면 3번 다 하지 않아도, 얘네들이 알아서 dispatch 를 요청해준다
 
         ==>  백엔드에서 요청했을 때 변화하는 다양한 상태값을 쉽게하기 위해서 사용하는 것이 redux thunk 이다
@@ -30,10 +30,12 @@ export const todoSlice = createSlice({
     name: "todo",
     initialState,
     reducers: {
+        //--------------------------------------------------------------------------
+        // 작성 :
+
         // addTodo: (state, action) => {
         //     state.todo.push(action.payload)
         // },
-
         //==>  extraReducers 로 사용해주기 위해 addTodo 빼줬다
 
         //--------------------------------------------------------------------------

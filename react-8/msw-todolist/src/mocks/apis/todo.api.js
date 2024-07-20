@@ -18,8 +18,8 @@ export const addTodo = http.post("/api/todo", async ({ request }) => {
         status: 200,
         data: {
             id: Math.floor(Math.random() * 1000000),
-            title,
-            content,
+            title, //--> request 매개변수로 전달받아야하는 값이다
+            content, //--> request 매개변수로 전달받아야하는 값이다
             state: false,
         } //--> 이렇게 프론트엔드에서 요청받으면, 데이터 전달하는 것이다
         //-->  프론트는 이 데이터를 response 로 받아서 json 으로 바꿔준 후에 dispatch 로 넣어주면 되는 것이다
