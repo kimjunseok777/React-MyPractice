@@ -6,7 +6,7 @@ const initialState = {
     // 투두리스트가 로딩중 이란 것을 보여주자
     // redux thunk :
     addTodoState: {
-        loading: false, //--> 아무것도 요청이 안올 때는 로딩이 false 인 상태이다
+        loading: false, //--> 아무것도 요청이 안올 때는 로딩이 false 인 상태이다 (로딩중인지, 아닌지를 나타낸다)
         done: false, //-->  done 은 요청이 성공이든 실패든 상관없이 끝났는지, 끝나지 않았는지를 확인하는 친구이다
         error: null,
     }
@@ -15,8 +15,8 @@ const initialState = {
         투두가 성공했다면 : loading 은 false 로 바꾸고, done 은 true 로 바꿔줘야한다, todo 는 값 채워줘야한다  -->  [...state, newTodo]  -->  dispatch
         투두가 실패했다면 : loading 은 false 로 바꾸고, done 은 true 로 바꿔줘야한다, error 에 메세지 넣어야한다  -->  error.message  -->  dispatch
 
-        ==>  dispatch 3번 해야한다  -->  이렇게 dispatch 를 여러번 하게 redux 가 만들었을까? (contextApi 사용했다면 진짜로 dispatch 3번 다 해야한다)
-        ==>  redux 의 thunk 를 사용하면 3번 다 하지 않아도, 얘네들이 알아서 dispatch 를 요청해준다
+        ==>  원래라면 dispatch 3번이나 해야한다  -->  이렇게 dispatch 를 여러번 하게 redux 가 만들었을까? (contextApi 사용했다면 진짜로 dispatch 3번 다 해야한다)
+        ==>  redux 의 thunk 를 사용하면 3번 다 하지 않아도, 얘네들이 알아서 에러메세지나 로딩중 등등 dispatch 를 요청해준다
 
         ==>  백엔드에서 요청했을 때 변화하는 다양한 상태값을 쉽게하기 위해서 사용하는 것이 redux thunk 이다
 
@@ -105,7 +105,7 @@ export const todoSlice = createSlice({
     //-----------------------------------------------------------------------------------
 })
 
-export const {deleteTodo, updateTodo, getTodos } = todoSlice.actions  //==>  addTodo 필요 없어서 지워줬다 (action 으로 가지 않고)
+export const {deleteTodo, updateTodo, getTodos } = todoSlice.actions  //==>  addTodo 필요 없어서 지워줬다 (action 으로 가지 않는다, 새로 만들어줬다)
 //-->  getTodos 새로 만들었으니 추가해줬다
 // export const { getTodos } = todoSlice.actions
 export default todoSlice.reducer
@@ -114,6 +114,7 @@ export default todoSlice.reducer
 // createAsyncThunk 사용해준 것 :
 
 //-->  겹치지 않게 만들어줘야한다 (고유한 키값이 되는 것이다)  -->  switch 에 들어가는 action.type 명이 된느 것이다
+//-->  여기서 "'todo/addTodo" 이게 고유한 키값이다  -->  겹치지 않아야한다  -->  이 친구가 switch 에 들어가는 action.type 인 것이다
 export const addTodo = createAsyncThunk('todo/addTodo', async({title, content}) => {
     const result = await fetch("/api/todo", {
         method: "post",
@@ -124,7 +125,9 @@ export const addTodo = createAsyncThunk('todo/addTodo', async({title, content}) 
     })
     const response = await result.json()
     return response.data  //-->  이 친구가 success 한 것이다  -->  자동으로 addTodo 의 success 한 곳으로 dispatch 로 전송이 되는 것이다  -->  return payload
-    //-->  즉, dispatch( addTodo( response.data ) ) 가 되는 것이다  -->  자동으로 해주는 것이다
+    //-->  여기 있는 response.data 가 자동으로 payload 로 가지는 것이다
+    //-->  즉, dispatch( addTodo( response.data ) ) 가 되는 것이다  -->  자동으로 dispatch 까지 해주는 것이다 (return만 되면 자동으로 옮겨주는 것)
+    // pending, fulfilled, reject 된 상황의 dispatch 를 자동으로 해준다  -->  ex) 만약 실패한다면, payload 에 에러제세지를 담아서 보내주는 것이다
 })
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------

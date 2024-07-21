@@ -10,6 +10,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
     
     const dispatch = useDispatch()
 
+    // 로딩, 성공, 실패 등등 확인하기 위해 useSelector 로 가져와준 것
     const state = useSelector((store) => store.todo.addTodoState)
     console.log(state) //-->  로딩, 성공, 실패 등등 확인할 수 있다
     /*
@@ -63,6 +64,8 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
 
         // setIsOpenAddTodoModal(false) //==>  이것도 여기 있을 필요가 없다  -->  아래 useEffect 로 바꿔주자
     }
+
+    // 로딩, 성공, 실패에 따라 모달창이 열고 닫히거나, 알람창이 뜨게끔 만들어준 것 (더 확실하게 action 을 구분시켜준 것이다)
     useEffect(() => {
         //--> 여기서 state 는 상단에 useSelector 로 불러온 전역상태값이다
         if(state.error) {
@@ -77,7 +80,7 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
 
     //------------------------------------------------------------------------------------------------
 
-    // if(state.loading) return <div>Loading...</div>
+    // if(state.loading) return <div> Loading... </div>
     //-->  로딩중인 것을 아예 이런 식으로 만들 수도 있다
 
     return (
