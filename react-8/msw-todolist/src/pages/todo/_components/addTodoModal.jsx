@@ -39,8 +39,9 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
                 content: event.target.content.value,
             })
         )
-        //-->  백엔드에 요청하는 것은 이미 thunk 에다가 다 작성을 해놨기에, 이렇게만 데이터를 보내면 끝난다
-        //-->  todo.slice.js 에서 fetch 로 데이터 요청했다
+        // 이 dispatch 한 것이 todo.slice 로 이동하고, 이 값을 todo.slice 에서 fetch 로 req 보내고, res 받은 값을 json() 등으로 바꿔서 return 시켜준 것이다
+        //-->  즉, response.body 이 값이 action.payload 로 담기는 것이다
+
         //---------------------------------------------------------------------------------------------------------------------------
         /*
         // redux thunk 사용하면 필요없기에 주석처리 해준 것 :
@@ -62,13 +63,17 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
         */
        //---------------------------------------------------------------------------------------------------------------------------
 
+
         // setIsOpenAddTodoModal(false) //==>  이것도 여기 있을 필요가 없다  -->  아래 useEffect 로 바꿔주자
+        //-->  에러 또는 실행이 끝났을 때에 따라 바뀌게 만들어줄 것이다
     }
 
     // 로딩, 성공, 실패에 따라 모달창이 열고 닫히거나, 알람창이 뜨게끔 만들어준 것 (더 확실하게 action 을 구분시켜준 것이다)
     useEffect(() => {
-        //--> 여기서 state 는 상단에 useSelector 로 불러온 전역상태값이다
+        //--> 여기서 state 는 상단에 useSelector 로 불러온 전역상태값이다 (initialState 의 addTodoState 이다)
+        //-->  const state = useSelector((store) => store.todo.addTodoState)
         if(state.error) {
+            // error 의 값이 null 이 아니라 값이 있다면 실행  -->  즉, 에러메세지가 있으면 실행하는 것이다
             return alert(state.error.message) //-->  만약 에러가 있다면, 이런식으로 하면 된다
         }
         if(state.done) {
@@ -76,7 +81,8 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
             //-->  추가가 완벽히 이루어졌을 때 모달창을 닫을 수 있게끔 바꿔준 것
             setIsOpenAddTodoModal(false)
         }
-    }, [setIsOpenAddTodoModal, state])
+    }, [setIsOpenAddTodoModal, state])  //-->  initialState 의 addTodoState 의 값이 바뀌면 재실행한다
+    
 
     //------------------------------------------------------------------------------------------------
 
