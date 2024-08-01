@@ -39,7 +39,8 @@ export const todoSlice = createSlice({
         // addTodo: (state, action) => {
         //     state.todo.push(action.payload)
         // },
-        //==>  extraReducers 로 사용해주기 위해 addTodo 빼줬다
+
+        //==>  extraReducers 로 사용해주기위해 addTodo 빼줬다
 
         //--------------------------------------------------------------------------
         // 조회 :
@@ -62,7 +63,7 @@ export const todoSlice = createSlice({
         */
         getTodos: (state, action) => {
             state.todo = action.payload
-            //-->  백엔드에서 오는 데이터인 data 배열에 id, title, content, state 모두 있기에, 이 응답받은 data 배열 자체를 payload 에 넣주면 조회가 되는 것이다
+            //-->  백엔드에서 오는 데이터인 data 배열에 id, title, content, state 모두 있기에, 이 응답받은 data 배열 자체를 payload 에 넣어주면 조회가 되는 것이다
         },
         //--------------------------------------------------------------------------
 
@@ -125,7 +126,8 @@ export default todoSlice.reducer
 // createAsyncThunk 사용해준 것 :
 
 //-->  겹치지 않게 만들어줘야한다 (고유한 키값이 되는 것이다)  -->  switch 에 들어가는 action.type 명이 되는 것이다
-//-->  여기서 "'todo/addTodo" 이게 고유한 키값이다  -->  겹치지 않아야한다  -->  이 친구가 switch 에 들어가는 action.type 인 것이다
+//-->  여기서 "todo/addTodo" 이게 고유한 키값이다  -->  겹치지 않아야한다  -->  이 친구가 switch 에 들어가는 action.type 인 것이다
+//-->  "todo/addTodo"  -->  로거에서 이름 기본값이 된다
 export const addTodo = createAsyncThunk('todo/addTodo', async({title, content}) => {
     //-->  title, content 를 매개변수로 받고, fetch 로 데이터 요청할 때 이 매개변수 title, content 를 보내는 것이다
     const result = await fetch("/api/todo", {  //-->  todo.slice.js 에서 fetch 사용해서 백엔드에게 데이터 요청한 것이다 (작성 api 에 request 보낸 것이다)
@@ -139,7 +141,7 @@ export const addTodo = createAsyncThunk('todo/addTodo', async({title, content}) 
     return response.data  //-->  이 친구가 success 한 것이다  -->  자동으로 addTodo 의 success 한 곳으로 dispatch 로 전송이 되는 것이다  -->  return payload
     //-->  여기 있는 response.data 가 자동으로 payload 로 가지는 것이다
     //-->  즉, dispatch( addTodo( response.data ) ) 가 되는 것이다  -->  자동으로 dispatch 까지 해주는 것이다 (return만 되면 자동으로 옮겨주는 것)
-    // pending, fulfilled, reject 된 상황의 dispatch 를 자동으로 해준다  -->  ex) 만약 실패한다면, payload 에 에러제세지를 담아서 보내주는 것이다
+    // pending, fulfilled, reject 된 상황의 dispatch 를 자동으로 해준다  -->  ex) 만약 실패한다면, payload 에 에러메세지를 담아서 보내주는 것이다
 })
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------

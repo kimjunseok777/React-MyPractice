@@ -10,6 +10,8 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
     
     const dispatch = useDispatch()
 
+    //------------------------------------------------------------------------------------------------
+    // redux thunk :
     // 로딩, 성공, 실패 등등 확인하기 위해 useSelector 로 가져와준 것
     const state = useSelector((store) => store.todo.addTodoState)
     console.log(state) //-->  로딩, 성공, 실패 등등 확인할 수 있다
@@ -20,7 +22,6 @@ const AddTodoModal = ({setIsOpenAddTodoModal}) => {
             error: null
         }
     */
-
     //------------------------------------------------------------------------------------------------
     // msw 수업 :
     /**
