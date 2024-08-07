@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo } from "../../../store/todo.slice"; //-->  dispatch 안에서 사용해주는 상태변화 함수를 import 받은 것이다
+import { addTodo } from "../../../store/todo.slice";
 import { useEffect } from "react";
 
 
