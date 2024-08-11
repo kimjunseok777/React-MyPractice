@@ -22,7 +22,7 @@ const initialState = {
         ==>  redux 의 thunk 를 사용하면 3번 다 하지 않아도, 얘네들이 알아서 에러메세지나 로딩중 등등 dispatch 를 요청해준다
         ==>  redux thunk 사용 안했다면 : 로딩중 한번, 실패 한번, 성공 한번  -->  이렇게 dispatch 3번 해야 한다
 
-        ==>  백엔드에서 요청했을 때 변화하는 다양한 상태값을 쉽게하기 위해서 사용하는 것이 redux thunk 이다
+        ==>  백엔드에서 요청했을 때 변화하는 다양한 상태값을 쉽게 하기 위해서 사용하는 것이 redux thunk 이다
 
         아래에 createAsyncThunk 만들어주고, reducers 가 아닌 extraReducers 새로 만들어주자 (addTodo 만 redux thunk 로 바꿔볼 것이다)
     */
