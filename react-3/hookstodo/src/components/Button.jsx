@@ -102,6 +102,7 @@ const shapeCSS = {
     `
 }
 
+// props 로 variant, size, shape 값들을 받아서 객체 안에 들어있는 css 속성을 정해주는 것이다
 const Button = styled.button`
     ${(props) => variantCSS[props.variant]}
     ${({size}) => sizeCSS[size]}  //-->  구조분해할당
