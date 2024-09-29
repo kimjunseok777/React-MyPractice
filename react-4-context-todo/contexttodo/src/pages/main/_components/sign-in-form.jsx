@@ -31,7 +31,7 @@ const SignInForm = () => {
 
 export default SignInForm
 
-
+// 삭제해줘도 되는 것들  -->  다 컴포넌트로 모듈화 해줬다
 const InputBox = styled.div`
     display: flex;
     justify-content: center;
